@@ -1,0 +1,78 @@
+name: Deploy Apps Script
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'apps-script.js'   # só roda quando este arquivo muda
+
+jobs:
+  deploy:
+    name: Push & Redeploy via clasp
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout do repo
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 3. Instalar clasp
+      - name: Install clasp
+        run: npm install -g @google/clasp@2.4.2
+
+      # 4. Injetar credenciais OAuth salvas no GitHub Secret
+      - name: Configure clasp credentials
+        run: |
+          echo '${{ secrets.CLASP_CLASPRC }}' > ~/.clasprc.json
+          chmod 600 ~/.clasprc.json
+
+      # 5. Injetar Script ID no .clasp.json
+      - name: Configure .clasp.json
+        run: |
+          echo '{
+            "scriptId": "${{ secrets.CLASP_SCRIPT_ID }}",
+            "rootDir": "."
+          }' > .clasp.json
+
+      # 6. Renomear apps-script.js → Code.gs (formato Apps Script)
+      - name: Prepare script file
+        run: |
+          cp apps-script.js Code.gs
+
+      # 7. Push do código para o Apps Script
+      - name: Push code to Apps Script
+        run: |
+          clasp push --force
+        env:
+          CLASP_CONFIG_AUTH: ~/.clasprc.json
+
+      # 8. Criar nova versão e reimplantar
+      - name: Redeploy (nova versão)
+        run: |
+          # Cria nova versão numerada
+          VERSION=$(clasp version "Deploy automático - $(date +'%Y-%m-%d %H:%M')" 2>&1 | grep -oP 'Created version \K[0-9]+' || echo "")
+
+          if [ -n "$VERSION" ]; then
+            echo "Nova versão criada: $VERSION"
+            # Atualiza o deployment existente com a nova versão
+            clasp redeploy "${{ secrets.CLASP_DEPLOYMENT_ID }}" "$VERSION" "Deploy automático via GitHub Actions"
+            echo "✅ Deployment atualizado com versão $VERSION"
+          else
+            echo "⚠️ Não foi possível extrair versão — tentando deploy direto"
+            clasp deploy --description "Deploy automático via GitHub Actions"
+          fi
+        env:
+          CLASP_CONFIG_AUTH: ~/.clasprc.json
+
+      # 9. Confirmar sucesso
+      - name: Resultado
+        run: |
+          echo "✅ Apps Script atualizado com sucesso!"
+          echo "URL: https://script.google.com/macros/s/${{ secrets.CLASP_DEPLOYMENT_ID }}/exec"
