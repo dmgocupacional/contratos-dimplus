@@ -1,0 +1,4 @@
+# Ignorar tudo exceto o script principal
+**
+!Code.gs
+!appsscript.json
