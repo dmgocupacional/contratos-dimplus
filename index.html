@@ -3,438 +3,314 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Termo de Adesão — DIM+ Saúde</title>
+<title>DIM+ Saúde — Sistema de Contratos</title>
 <style>
 /* ═══ BLOCO: DESIGN TOKENS ═══ */
 :root {
-  --navy:      #0f2545;
-  --navy2:     #194C54;
-  --orange:    #D4720A;
-  --gold:      #C8973A;
-  --white:     #ffffff;
-  --gray50:    #f8f9fa;
-  --gray100:   #f1f3f5;
-  --gray200:   #e9ecef;
-  --gray300:   #dee2e6;
-  --gray400:   #ced4da;
-  --gray500:   #adb5bd;
-  --gray600:   #6c757d;
-  --gray700:   #495057;
-  --gray800:   #343a40;
-  --green:     #2d8a4e;
-  --red:       #c0392b;
-  --blue:      #1a6fb5;
-  --radius:    10px;
-  --radius-sm: 6px;
-  --shadow:    0 2px 16px rgba(15,37,69,0.10);
-  --shadow-lg: 0 8px 32px rgba(15,37,69,0.18);
-  --font:      'Inter', 'Segoe UI', system-ui, sans-serif;
+  --navy:    #0f2545; --navy2: #194C54;
+  --orange:  #D4720A; --gold:  #C8973A;
+  --white:   #ffffff; --green: #2d8a4e;
+  --red:     #c0392b; --blue:  #1a6fb5;
+  --purple:  #6c3fc8;
+  --gray50:  #f8f9fa; --gray100:#f1f3f5; --gray200:#e9ecef;
+  --gray300: #dee2e6; --gray400:#ced4da; --gray500:#adb5bd;
+  --gray600: #6c757d; --gray700:#495057; --gray800:#343a40;
+  --radius:10px; --radius-sm:6px;
+  --shadow:0 2px 16px rgba(15,37,69,.10);
+  --shadow-lg:0 8px 32px rgba(15,37,69,.18);
+  --font:'Inter','Segoe UI',system-ui,sans-serif;
 }
-/* ── FIM BLOCO ── */
-
-/* ═══ BLOCO: RESET & BASE ═══ */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; }
-body { font-family: var(--font); background: var(--gray100); color: var(--gray800); min-height: 100vh; }
-a { color: inherit; text-decoration: none; }
-button { cursor: pointer; font-family: var(--font); }
-input, select, textarea { font-family: var(--font); }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px}
+body{font-family:var(--font);background:var(--gray100);color:var(--gray800);min-height:100vh;padding-bottom:70px}
+button{cursor:pointer;font-family:var(--font)}
+input,select,textarea{font-family:var(--font)}
 /* ── FIM BLOCO ── */
 
 /* ═══ BLOCO: HEADER ═══ */
-.header {
-  background: var(--navy);
-  padding: 12px 20px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: var(--shadow-lg);
-}
-.header-logo { height: 40px; width: auto; display: block; }
-.header-title { color: var(--white); font-size: 15px; font-weight: 700; line-height: 1.2; }
-.header-sub   { color: rgba(255,255,255,0.60); font-size: 11px; margin-top: 2px; }
-.header-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
-.header-vendedor-badge {
-  background: rgba(255,255,255,0.12);
-  color: var(--white);
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-  display: none;
-  align-items: center;
-  gap: 6px;
-}
-.header-vendedor-badge.show { display: flex; }
-.btn-gestao {
-  background: rgba(255,255,255,0.15);
-  border: 1px solid rgba(255,255,255,0.25);
-  color: white;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-  display: none;
-  align-items: center;
-  gap: 6px;
-  transition: background 0.2s;
-}
-.btn-gestao.show { display: flex; }
-.btn-gestao:hover { background: rgba(255,255,255,0.25); }
+.header{background:var(--navy);padding:12px 16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100;box-shadow:var(--shadow-lg)}
+.header-logo{height:38px;width:auto}
+.header-title{color:var(--white);font-size:14px;font-weight:700;line-height:1.2}
+.header-sub{color:rgba(255,255,255,.55);font-size:11px}
+.header-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+.user-badge{background:rgba(255,255,255,.12);color:var(--white);padding:5px 10px;border-radius:20px;font-size:12px;font-weight:600;display:none;align-items:center;gap:6px}
+.user-badge.show{display:flex}
+.role-pill{font-size:10px;padding:2px 6px;border-radius:10px;font-weight:700}
+.role-gestor{background:var(--gold);color:var(--navy)}
+.role-vendedor{background:var(--green);color:white}
+.btn-logout{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:white;padding:5px 10px;border-radius:20px;font-size:11px;font-weight:600;transition:background .2s;display:none}
+.btn-logout.show{display:block}
+.btn-logout:hover{background:rgba(255,255,255,.2)}
+/* ── FIM BLOCO ── */
+
+/* ═══ BLOCO: BOTTOM NAV ═══ */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--navy);display:none;z-index:200;box-shadow:0 -2px 16px rgba(15,37,69,.2)}
+.bottom-nav.show{display:flex}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 4px;color:rgba(255,255,255,.5);font-size:10px;font-weight:600;gap:3px;cursor:pointer;transition:color .2s;border:none;background:transparent;text-transform:uppercase;letter-spacing:.3px}
+.nav-item:hover,.nav-item.active{color:var(--orange)}
+.nav-item.active{color:var(--orange)}
+.nav-icon{font-size:20px;line-height:1}
 /* ── FIM BLOCO ── */
 
 /* ═══ BLOCO: PROGRESS BAR ═══ */
-.progress-wrap { background: var(--navy); padding: 0 20px 16px; display: none; }
-.progress-wrap.show { display: block; }
-.progress-steps { display: flex; align-items: center; }
-.p-step { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; position: relative; }
-.p-step::before {
-  content: ''; position: absolute; top: 14px; right: -50%; width: 100%; height: 2px;
-  background: rgba(255,255,255,0.2); z-index: 0;
-}
-.p-step:last-child::before { display: none; }
-.p-step.done::before { background: var(--gold); }
-.p-dot {
-  width: 28px; height: 28px; border-radius: 50%;
-  background: rgba(255,255,255,0.18); border: 2px solid rgba(255,255,255,0.3);
-  color: rgba(255,255,255,0.5); font-size: 12px; font-weight: 700;
-  display: flex; align-items: center; justify-content: center;
-  position: relative; z-index: 1; transition: all 0.3s;
-}
-.p-step.active .p-dot { background: var(--orange); border-color: var(--orange); color: white; box-shadow: 0 0 0 4px rgba(212,114,10,0.3); }
-.p-step.done .p-dot   { background: var(--gold); border-color: var(--gold); color: white; }
-.p-label { font-size: 10px; color: rgba(255,255,255,0.5); font-weight: 500; text-align: center; }
-.p-step.active .p-label { color: rgba(255,255,255,0.9); }
-.p-step.done .p-label   { color: var(--gold); }
+.progress-wrap{background:var(--navy);padding:0 20px 14px;display:none}
+.progress-wrap.show{display:block}
+.progress-steps{display:flex;align-items:center}
+.p-step{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;position:relative}
+.p-step::before{content:'';position:absolute;top:14px;right:-50%;width:100%;height:2px;background:rgba(255,255,255,.2);z-index:0}
+.p-step:last-child::before{display:none}
+.p-step.done::before{background:var(--gold)}
+.p-dot{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.18);border:2px solid rgba(255,255,255,.3);color:rgba(255,255,255,.5);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;transition:all .3s}
+.p-step.active .p-dot{background:var(--orange);border-color:var(--orange);color:white;box-shadow:0 0 0 4px rgba(212,114,10,.3)}
+.p-step.done .p-dot{background:var(--gold);border-color:var(--gold);color:white}
+.p-label{font-size:10px;color:rgba(255,255,255,.5);font-weight:500;text-align:center}
+.p-step.active .p-label{color:rgba(255,255,255,.9)}
+.p-step.done .p-label{color:var(--gold)}
 /* ── FIM BLOCO ── */
 
 /* ═══ BLOCO: CONTAINER & SCREENS ═══ */
-.container { max-width: 680px; margin: 0 auto; padding: 24px 16px 80px; }
-.screen { display: none; }
-.screen.active { display: block; }
+.container{max-width:680px;margin:0 auto;padding:20px 16px 24px}
+.screen{display:none}
+.screen.active{display:block}
 /* ── FIM BLOCO ── */
 
-/* ═══ BLOCO: LOGIN SCREEN ═══ */
-.login-card {
-  background: var(--white); border-radius: var(--radius);
-  box-shadow: var(--shadow-lg); padding: 40px 32px;
-  text-align: center; margin-top: 32px;
-}
-.login-logo-img { height: 80px; width: auto; margin: 0 auto 20px; display: block; }
-.login-title { font-size: 20px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
-.login-sub { color: var(--gray600); font-size: 14px; margin-bottom: 28px; }
-.login-label { display: block; text-align: left; font-size: 13px; font-weight: 600; color: var(--gray700); margin-bottom: 8px; }
-.login-select {
-  width: 100%; padding: 14px 16px; border: 2px solid var(--gray300);
-  border-radius: var(--radius-sm); font-size: 16px; color: var(--gray800);
-  background: var(--white); outline: none; transition: border-color 0.2s;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236c757d' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 16px center;
-}
-.login-select:focus { border-color: var(--orange); }
-.btn-login {
-  width: 100%; padding: 15px; background: var(--orange); color: white;
-  font-size: 16px; font-weight: 700; border: none; border-radius: var(--radius-sm);
-  margin-top: 18px; transition: background 0.2s;
-}
-.btn-login:hover { background: #b85e00; }
+/* ═══ BLOCO: LOGIN ═══ */
+.login-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-lg);padding:40px 32px;text-align:center;margin-top:32px}
+.login-logo-img{height:72px;width:auto;margin:0 auto 20px;display:block}
+.login-title{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:6px}
+.login-sub{color:var(--gray600);font-size:14px;margin-bottom:28px}
+.login-field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;text-align:left}
+.login-label{font-size:12px;font-weight:600;color:var(--gray600);text-transform:uppercase;letter-spacing:.5px}
+.login-input{padding:13px 14px;border:1.5px solid var(--gray300);border-radius:var(--radius-sm);font-size:15px;outline:none;transition:border-color .2s;width:100%}
+.login-input:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(212,114,10,.12)}
+.btn-login-submit{width:100%;padding:15px;background:var(--orange);color:white;font-size:16px;font-weight:700;border:none;border-radius:var(--radius-sm);margin-top:8px;transition:background .2s}
+.btn-login-submit:hover{background:#b85e00}
+.login-error{background:#fde8e8;color:var(--red);border-radius:var(--radius-sm);padding:10px 14px;font-size:13px;font-weight:600;display:none;margin-top:10px}
+.login-error.show{display:block}
 /* ── FIM BLOCO ── */
 
 /* ═══ BLOCO: CARDS & FORM ═══ */
-.card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 24px; margin-bottom: 20px; }
-.card-title {
-  font-size: 13px; font-weight: 700; color: var(--navy);
-  text-transform: uppercase; letter-spacing: 0.8px;
-  padding-bottom: 14px; border-bottom: 2px solid var(--gray100);
-  margin-bottom: 20px; display: flex; align-items: center; gap: 8px;
-}
-.card-title-icon {
-  width: 28px; height: 28px; background: var(--navy); border-radius: 6px;
-  display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; flex-shrink: 0;
-}
-.form-row { display: flex; gap: 12px; margin-bottom: 14px; }
-.form-row:last-child { margin-bottom: 0; }
-.form-group { display: flex; flex-direction: column; gap: 6px; flex: 1; }
-.form-group.w-full { flex: none; width: 100%; }
-.form-group.w-2 { flex: 2; }
-.form-group.w-3 { flex: 3; }
-.form-label { font-size: 12px; font-weight: 600; color: var(--gray600); text-transform: uppercase; letter-spacing: 0.5px; }
-.form-label .required { color: var(--orange); margin-left: 2px; }
-.form-input, .form-select {
-  padding: 11px 14px; border: 1.5px solid var(--gray300); border-radius: var(--radius-sm);
-  font-size: 15px; color: var(--gray800); background: var(--white); outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s; width: 100%;
-}
-.form-input:focus, .form-select:focus { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(212,114,10,0.12); }
-.form-select {
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236c757d' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 12px center; padding-right: 36px;
-}
+.card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin-bottom:16px}
+.card-title{font-size:13px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.8px;padding-bottom:12px;border-bottom:2px solid var(--gray100);margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.card-title-icon{width:28px;height:28px;background:var(--navy);border-radius:6px;display:flex;align-items:center;justify-content:center;color:white;font-size:14px;flex-shrink:0}
+.form-row{display:flex;gap:12px;margin-bottom:12px}
+.form-row:last-child{margin-bottom:0}
+.form-group{display:flex;flex-direction:column;gap:5px;flex:1}
+.form-group.w-full{flex:none;width:100%}
+.form-group.w-2{flex:2}
+.form-group.w-3{flex:3}
+.form-label{font-size:11px;font-weight:600;color:var(--gray600);text-transform:uppercase;letter-spacing:.5px}
+.form-label .req{color:var(--orange);margin-left:2px}
+.form-input,.form-select{padding:10px 12px;border:1.5px solid var(--gray300);border-radius:var(--radius-sm);font-size:14px;color:var(--gray800);background:var(--white);outline:none;transition:border-color .2s;width:100%}
+.form-input:focus,.form-select:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(212,114,10,.12)}
+.form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236c757d' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px}
 /* ── FIM BLOCO ── */
 
 /* ═══ BLOCO: RADIO CARDS ═══ */
-.radio-group { display: flex; gap: 12px; flex-wrap: wrap; }
-.radio-card {
-  flex: 1; min-width: 130px; border: 2px solid var(--gray300);
-  border-radius: var(--radius-sm); padding: 12px; cursor: pointer;
-  transition: all 0.2s; position: relative;
-}
-.radio-card.selected { border-color: var(--orange); background: rgba(212,114,10,0.04); }
-.radio-card input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
-.radio-card-title { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
-.radio-card-price { font-size: 11px; color: var(--gray600); line-height: 1.4; }
-.radio-card.selected .radio-card-title { color: var(--orange); }
-.radio-check {
-  width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--gray400);
-  position: absolute; top: 10px; right: 10px; background: white; transition: all 0.2s;
-}
-.radio-card.selected .radio-check { border-color: var(--orange); background: var(--orange); box-shadow: inset 0 0 0 3px white; }
+.radio-group{display:flex;gap:10px;flex-wrap:wrap}
+.radio-card{flex:1;min-width:120px;border:2px solid var(--gray300);border-radius:var(--radius-sm);padding:12px;cursor:pointer;transition:all .2s;position:relative}
+.radio-card.selected{border-color:var(--orange);background:rgba(212,114,10,.04)}
+.radio-card input[type="radio"]{position:absolute;opacity:0;width:0;height:0}
+.radio-card-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.radio-card-price{font-size:11px;color:var(--gray600);line-height:1.4}
+.radio-card.selected .radio-card-title{color:var(--orange)}
+.radio-check{width:18px;height:18px;border-radius:50%;border:2px solid var(--gray400);position:absolute;top:10px;right:10px;background:white;transition:all .2s}
+.radio-card.selected .radio-check{border-color:var(--orange);background:var(--orange);box-shadow:inset 0 0 0 3px white}
 /* ── FIM BLOCO ── */
 
 /* ═══ BLOCO: DEPENDENTES ═══ */
-.dep-item { border: 1.5px solid var(--gray200); border-radius: var(--radius-sm); margin-bottom: 12px; overflow: hidden; }
-.dep-item.filled { border-color: var(--gold); }
-.dep-header { background: var(--gray50); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; }
-.dep-header-title { font-size: 13px; font-weight: 700; color: var(--navy); display: flex; align-items: center; gap: 8px; }
-.dep-num { width: 22px; height: 22px; background: var(--navy); color: white; border-radius: 50%; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
-.dep-item.filled .dep-num { background: var(--gold); }
-.dep-arrow { font-size: 12px; color: var(--gray500); transition: transform 0.3s; }
-.dep-item.open .dep-arrow { transform: rotate(180deg); }
-.dep-body { padding: 16px; display: none; }
-.dep-item.open .dep-body { display: block; }
-.btn-add-dep {
-  width: 100%; padding: 12px; border: 2px dashed var(--gray400); border-radius: var(--radius-sm);
-  background: transparent; color: var(--gray600); font-size: 14px; font-weight: 600;
-  transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 4px;
-}
-.btn-add-dep:hover { border-color: var(--orange); color: var(--orange); background: rgba(212,114,10,0.04); }
+.dep-item{border:1.5px solid var(--gray200);border-radius:var(--radius-sm);margin-bottom:10px;overflow:hidden}
+.dep-item.filled{border-color:var(--gold)}
+.dep-header{background:var(--gray50);padding:11px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none}
+.dep-header-title{font-size:13px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:8px}
+.dep-num{width:22px;height:22px;background:var(--navy);color:white;border-radius:50%;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.dep-item.filled .dep-num{background:var(--gold)}
+.dep-arrow{font-size:12px;color:var(--gray500);transition:transform .3s}
+.dep-item.open .dep-arrow{transform:rotate(180deg)}
+.dep-body{padding:14px;display:none}
+.dep-item.open .dep-body{display:block}
+.btn-add-dep{width:100%;padding:11px;border:2px dashed var(--gray400);border-radius:var(--radius-sm);background:transparent;color:var(--gray600);font-size:14px;font-weight:600;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:4px}
+.btn-add-dep:hover{border-color:var(--orange);color:var(--orange);background:rgba(212,114,10,.04)}
 /* ── FIM BLOCO ── */
 
-/* ═══ BLOCO: ASSINATURA DIGITAL ═══ */
-.assin-wrap {
-  border: 2px solid var(--gray300); border-radius: var(--radius-sm);
-  overflow: hidden; background: white; position: relative;
-}
-.assin-label-bar {
-  background: var(--gray50); padding: 8px 14px;
-  font-size: 12px; font-weight: 600; color: var(--gray600);
-  display: flex; align-items: center; justify-content: space-between;
-  border-bottom: 1px solid var(--gray200);
-}
-.assin-canvas {
-  display: block; width: 100%; touch-action: none;
-  cursor: crosshair; background: white;
-}
-.assin-hint {
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-  color: var(--gray400); font-size: 13px; pointer-events: none;
-  text-align: center; line-height: 1.5;
-}
-.assin-hint.hidden { display: none; }
-.btn-clear-assin {
-  background: transparent; border: none; color: var(--red);
-  font-size: 12px; font-weight: 600; padding: 4px 8px;
-  border-radius: 4px; transition: background 0.2s;
-}
-.btn-clear-assin:hover { background: rgba(192,57,43,0.08); }
-.assin-status {
-  padding: 6px 14px; font-size: 11px; font-weight: 600;
-  display: flex; align-items: center; gap: 6px;
-  border-top: 1px solid var(--gray200);
-}
-.assin-status.ok { color: var(--green); }
-.assin-status.pending { color: var(--gray500); }
+/* ═══ BLOCO: ASSINATURA ═══ */
+.assin-wrap{border:2px solid var(--gray300);border-radius:var(--radius-sm);overflow:hidden;background:white;position:relative}
+.assin-label-bar{background:var(--gray50);padding:7px 12px;font-size:12px;font-weight:600;color:var(--gray600);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--gray200)}
+.assin-canvas{display:block;width:100%;touch-action:none;cursor:crosshair;background:white}
+.assin-hint{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--gray400);font-size:13px;pointer-events:none;text-align:center}
+.assin-hint.hidden{display:none}
+.btn-clear-assin{background:transparent;border:none;color:var(--red);font-size:12px;font-weight:600;padding:3px 8px;border-radius:4px;transition:background .2s}
+.btn-clear-assin:hover{background:rgba(192,57,43,.08)}
+.assin-status{padding:5px 12px;font-size:11px;font-weight:600;display:flex;align-items:center;gap:6px;border-top:1px solid var(--gray200)}
+.assin-status.ok{color:var(--green)}
+.assin-status.pending{color:var(--gray500)}
 /* ── FIM BLOCO ── */
 
 /* ═══ BLOCO: PREVIEW ═══ */
-.preview-doc {
-  background: white; border: 1px solid var(--gray300); border-radius: var(--radius-sm);
-  padding: 28px 24px; font-size: 13px; line-height: 1.7; color: #111;
-}
-.preview-doc h1 {
-  font-size: 15px; text-align: center; font-weight: 800; color: var(--navy);
-  margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;
-}
-.preview-logo-header { text-align: center; margin-bottom: 16px; }
-.preview-logo-header img { height: 52px; width: auto; }
-.preview-doc h2 {
-  font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
-  color: var(--navy); margin: 18px 0 8px; padding-bottom: 4px; border-bottom: 1.5px solid var(--navy);
-}
-.preview-field-row { display: flex; flex-wrap: wrap; gap: 0; margin-bottom: 4px; }
-.preview-field { display: inline-flex; gap: 4px; margin-right: 20px; margin-bottom: 4px; }
-.preview-field-label { font-weight: 700; font-size: 11px; color: var(--gray700); }
-.preview-field-value { font-size: 11px; color: #111; border-bottom: 1px solid var(--gray400); min-width: 80px; padding-bottom: 1px; }
-.preview-conditions { font-size: 11px; line-height: 1.65; margin-top: 8px; color: #222; }
-.preview-conditions p { margin-bottom: 7px; }
-.preview-conditions ul { padding-left: 18px; margin-bottom: 7px; }
-.preview-conditions li { margin-bottom: 3px; }
-.preview-assinatura { margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.preview-assin-block { text-align: center; }
-.preview-assin-img { width: 100%; height: 72px; object-fit: contain; display: block; margin-bottom: 4px; border-bottom: 1.5px solid #111; }
-.preview-assin-line { border-bottom: 1.5px solid #111; margin-bottom: 6px; height: 72px; }
-.preview-assin-label { font-size: 10px; color: var(--gray600); }
-.preview-sep { border: none; border-top: 2px solid var(--gray200); margin: 16px 0; }
-.preview-dep-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 10px; }
-.preview-dep-table th { background: var(--gray100); padding: 5px 6px; text-align: left; font-weight: 700; border: 1px solid var(--gray300); font-size: 9px; text-transform: uppercase; color: var(--gray700); }
-.preview-dep-table td { padding: 5px 6px; border: 1px solid var(--gray300); vertical-align: top; }
-.preview-dep-table tr:nth-child(even) td { background: var(--gray50); }
+.preview-doc{background:white;border:1px solid var(--gray300);border-radius:var(--radius-sm);padding:24px 20px;font-size:12px;line-height:1.65;color:#111}
+.preview-doc h1{font-size:14px;text-align:center;font-weight:800;color:var(--navy);margin-bottom:16px;text-transform:uppercase;letter-spacing:1px}
+.preview-logo-header{text-align:center;margin-bottom:12px}
+.preview-logo-header img{height:44px;width:auto}
+.preview-doc h2{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--navy);margin:14px 0 6px;padding-bottom:3px;border-bottom:1.5px solid var(--navy)}
+.preview-field-row{display:flex;flex-wrap:wrap;gap:0;margin-bottom:3px}
+.preview-field{display:inline-flex;gap:4px;margin-right:16px;margin-bottom:3px}
+.preview-field-label{font-weight:700;font-size:10px;color:var(--gray700)}
+.preview-field-value{font-size:10px;color:#111;border-bottom:1px solid var(--gray400);min-width:60px;padding-bottom:1px}
+.preview-conditions{font-size:10.5px;line-height:1.6;margin-top:6px;color:#222}
+.preview-conditions p{margin-bottom:6px}
+.preview-conditions ul{padding-left:16px;margin-bottom:6px}
+.preview-conditions li{margin-bottom:3px}
+.preview-assinatura{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.preview-assin-block{text-align:center}
+.preview-assin-img{width:100%;height:64px;object-fit:contain;display:block;margin-bottom:4px;border-bottom:1.5px solid #111}
+.preview-assin-line{border-bottom:1.5px solid #111;margin-bottom:5px;height:64px}
+.preview-assin-label{font-size:10px;color:var(--gray600)}
+.preview-sep{border:none;border-top:2px solid var(--gray200);margin:14px 0}
+.preview-dep-table{width:100%;border-collapse:collapse;margin-top:6px;font-size:9px}
+.preview-dep-table th{background:var(--gray100);padding:4px 5px;text-align:left;font-weight:700;border:1px solid var(--gray300);text-transform:uppercase;color:var(--gray700)}
+.preview-dep-table td{padding:4px 5px;border:1px solid var(--gray300)}
+.preview-dep-table tr:nth-child(even) td{background:var(--gray50)}
+/* ── FIM BLOCO ── */
+
+/* ═══ BLOCO: PAINEL / DASHBOARD ═══ */
+.page-title{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px}
+.stat-card{background:white;border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);border-left:4px solid var(--gray300)}
+.stat-card.c-orange{border-color:var(--orange)}
+.stat-card.c-green{border-color:var(--green)}
+.stat-card.c-blue{border-color:var(--blue)}
+.stat-card.c-gold{border-color:var(--gold)}
+.stat-num{font-size:26px;font-weight:800;color:var(--navy);line-height:1}
+.stat-label{font-size:11px;color:var(--gray600);margin-top:4px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.stat-sub{font-size:11px;color:var(--gray500);margin-top:2px}
+
+/* Barras vendedor */
+.bar-chart{display:flex;flex-direction:column;gap:12px}
+.bar-row{display:flex;align-items:center;gap:10px}
+.bar-name{font-size:12px;font-weight:600;color:var(--gray700);min-width:110px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{flex:1;background:var(--gray200);border-radius:4px;height:10px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;background:var(--orange);transition:width .8s ease}
+.bar-val{font-size:12px;font-weight:700;color:var(--navy);min-width:24px;text-align:right}
+
+/* Linha evolução */
+.chart-wrap{background:white;border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;margin-bottom:16px}
+.chart-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px}
+.line-chart-svg{width:100%;overflow:visible}
+
+/* Period filter */
+.period-btns{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.period-btn{padding:6px 14px;border:1.5px solid var(--gray300);border-radius:20px;font-size:12px;font-weight:600;background:white;color:var(--gray600);cursor:pointer;transition:all .2s}
+.period-btn.active{border-color:var(--orange);background:var(--orange);color:white}
 /* ── FIM BLOCO ── */
 
 /* ═══ BLOCO: GESTÃO ═══ */
-.gestao-header {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
-}
-.gestao-title { font-size: 20px; font-weight: 800; color: var(--navy); }
-.gestao-filters { display: flex; gap: 10px; flex-wrap: wrap; }
-.gestao-filter {
-  padding: 8px 16px; border: 1.5px solid var(--gray300); border-radius: 20px;
-  font-size: 13px; font-weight: 600; background: white; color: var(--gray700);
-  cursor: pointer; transition: all 0.2s;
-}
-.gestao-filter.active { border-color: var(--orange); background: var(--orange); color: white; }
-.gestao-search {
-  width: 100%; padding: 11px 14px; border: 1.5px solid var(--gray300);
-  border-radius: var(--radius-sm); font-size: 14px; outline: none; margin-bottom: 16px;
-  transition: border-color 0.2s;
-}
-.gestao-search:focus { border-color: var(--orange); }
-.gestao-stats {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px;
-}
-.gestao-stat {
-  background: white; border-radius: var(--radius-sm); padding: 16px;
-  box-shadow: var(--shadow); text-align: center;
-}
-.gestao-stat-num { font-size: 28px; font-weight: 800; color: var(--navy); line-height: 1; }
-.gestao-stat-label { font-size: 11px; color: var(--gray600); margin-top: 4px; font-weight: 600; text-transform: uppercase; }
-.gestao-table-wrap { background: white; border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
-.gestao-table { width: 100%; border-collapse: collapse; }
-.gestao-table thead tr { background: var(--navy); color: white; }
-.gestao-table th { padding: 12px 14px; text-align: left; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
-.gestao-table td { padding: 12px 14px; font-size: 13px; border-bottom: 1px solid var(--gray200); vertical-align: middle; }
-.gestao-table tbody tr:hover { background: var(--gray50); }
-.gestao-table tbody tr:last-child td { border-bottom: none; }
-.badge-plano {
-  padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700;
-  white-space: nowrap;
-}
-.badge-basico { background: rgba(26,111,181,0.12); color: var(--blue); }
-.badge-plus { background: rgba(200,151,58,0.15); color: #8a6200; }
-.badge-vendedor { background: rgba(15,37,69,0.08); color: var(--navy); padding: 3px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; }
-.btn-ver {
-  padding: 5px 12px; background: var(--navy); color: white;
-  border: none; border-radius: 4px; font-size: 12px; font-weight: 600;
-  cursor: pointer; transition: background 0.2s; white-space: nowrap;
-}
-.btn-ver:hover { background: #1a3a6e; }
-.gestao-empty { padding: 48px 20px; text-align: center; color: var(--gray500); }
-.gestao-empty-icon { font-size: 40px; margin-bottom: 12px; }
-.gestao-loading { padding: 48px 20px; text-align: center; color: var(--gray500); }
+.gestao-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:10px;flex-wrap:wrap}
+.gestao-filters{display:flex;gap:8px;flex-wrap:wrap}
+.filter-btn{padding:6px 14px;border:1.5px solid var(--gray300);border-radius:20px;font-size:12px;font-weight:600;background:white;color:var(--gray600);cursor:pointer;transition:all .2s}
+.filter-btn.active{border-color:var(--orange);background:var(--orange);color:white}
+.gestao-search{width:100%;padding:10px 12px;border:1.5px solid var(--gray300);border-radius:var(--radius-sm);font-size:14px;outline:none;margin-bottom:12px;transition:border-color .2s}
+.gestao-search:focus{border-color:var(--orange)}
+.table-wrap{background:white;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin-bottom:16px}
+.data-table{width:100%;border-collapse:collapse}
+.data-table thead tr{background:var(--navy);color:white}
+.data-table th{padding:10px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
+.data-table td{padding:10px 12px;font-size:13px;border-bottom:1px solid var(--gray200);vertical-align:middle}
+.data-table tbody tr:hover{background:var(--gray50)}
+.data-table tbody tr:last-child td{border-bottom:none}
+.badge{padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700;white-space:nowrap}
+.badge-orange{background:rgba(212,114,10,.12);color:var(--orange)}
+.badge-blue{background:rgba(26,111,181,.12);color:var(--blue)}
+.badge-gold{background:rgba(200,151,58,.15);color:#8a6200}
+.badge-green{background:rgba(45,138,78,.12);color:var(--green)}
+.badge-red{background:rgba(192,57,43,.12);color:var(--red)}
+.badge-gray{background:var(--gray200);color:var(--gray700)}
+.empty-state{padding:40px 20px;text-align:center;color:var(--gray500)}
+.empty-icon{font-size:36px;margin-bottom:10px}
+.loading-state{padding:40px 20px;text-align:center;color:var(--gray500)}
+/* ── FIM BLOCO ── */
 
-/* Modal gestão */
-.modal-overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.55);
-  z-index: 500; display: none; align-items: center; justify-content: center; padding: 16px;
-}
-.modal-overlay.show { display: flex; }
-.modal-box {
-  background: white; border-radius: var(--radius); box-shadow: var(--shadow-lg);
-  width: 100%; max-width: 720px; max-height: 90vh; overflow-y: auto;
-}
-.modal-header {
-  background: var(--navy); color: white; padding: 16px 20px;
-  display: flex; align-items: center; justify-content: space-between;
-  position: sticky; top: 0; z-index: 1; border-radius: var(--radius) var(--radius) 0 0;
-}
-.modal-header-title { font-size: 15px; font-weight: 700; }
-.btn-modal-close {
-  background: rgba(255,255,255,0.15); border: none; color: white;
-  width: 30px; height: 30px; border-radius: 50%; font-size: 16px;
-  cursor: pointer; transition: background 0.2s; display: flex; align-items: center; justify-content: center;
-}
-.btn-modal-close:hover { background: rgba(255,255,255,0.3); }
-.modal-body { padding: 20px; }
+/* ═══ BLOCO: USUÁRIOS ═══ */
+.user-card{background:white;border-radius:var(--radius-sm);border:1.5px solid var(--gray200);padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:10px;transition:border-color .2s}
+.user-card:hover{border-color:var(--gray400)}
+.user-avatar{width:42px;height:42px;border-radius:50%;background:var(--navy);color:white;font-size:16px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.user-avatar.av-gestor{background:var(--gold)}
+.user-avatar.av-vendedor{background:var(--green)}
+.user-info{flex:1;min-width:0}
+.user-name{font-size:14px;font-weight:700;color:var(--navy)}
+.user-email{font-size:12px;color:var(--gray600);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.user-meta{display:flex;gap:6px;margin-top:4px;flex-wrap:wrap}
+.user-actions{display:flex;gap:8px}
+.btn-icon{background:transparent;border:1.5px solid var(--gray300);color:var(--gray600);width:34px;height:34px;border-radius:8px;font-size:14px;transition:all .2s;display:flex;align-items:center;justify-content:center}
+.btn-icon:hover{border-color:var(--orange);color:var(--orange)}
+.btn-icon.danger:hover{border-color:var(--red);color:var(--red)}
+.inactive-overlay{opacity:.5}
+/* ── FIM BLOCO ── */
+
+/* ═══ BLOCO: MODAL ═══ */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:500;display:none;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.show{display:flex}
+.modal-box{background:white;border-radius:var(--radius);box-shadow:var(--shadow-lg);width:100%;max-width:480px;max-height:90vh;overflow-y:auto}
+.modal-header{background:var(--navy);color:white;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:1;border-radius:var(--radius) var(--radius) 0 0}
+.modal-header-title{font-size:14px;font-weight:700}
+.btn-modal-close{background:rgba(255,255,255,.15);border:none;color:white;width:28px;height:28px;border-radius:50%;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.btn-modal-close:hover{background:rgba(255,255,255,.3)}
+.modal-body{padding:20px}
+.modal-large .modal-box{max-width:720px}
 /* ── FIM BLOCO ── */
 
 /* ═══ BLOCO: BOTÕES ═══ */
-.btn-row { display: flex; gap: 12px; margin-top: 24px; }
-.btn { padding: 13px 20px; border-radius: var(--radius-sm); font-size: 15px; font-weight: 700; border: none; transition: all 0.2s; display: flex; align-items: center; gap: 8px; flex: 1; justify-content: center; }
-.btn-primary  { background: var(--orange); color: white; }
-.btn-primary:hover  { background: #b85e00; }
-.btn-secondary { background: var(--gray200); color: var(--gray700); }
-.btn-secondary:hover { background: var(--gray300); }
-.btn-success  { background: var(--green); color: white; }
-.btn-success:hover  { background: #1e6b3a; }
-.btn-navy     { background: var(--navy); color: white; }
-.btn-navy:hover     { background: #0a1a30; }
+.btn-row{display:flex;gap:10px;margin-top:20px}
+.btn{padding:12px 18px;border-radius:var(--radius-sm);font-size:14px;font-weight:700;border:none;transition:all .2s;display:flex;align-items:center;gap:7px;flex:1;justify-content:center}
+.btn-primary{background:var(--orange);color:white}
+.btn-primary:hover{background:#b85e00}
+.btn-secondary{background:var(--gray200);color:var(--gray700)}
+.btn-secondary:hover{background:var(--gray300)}
+.btn-success{background:var(--green);color:white}
+.btn-success:hover{background:#1e6b3a}
+.btn-navy{background:var(--navy);color:white}
+.btn-navy:hover{background:#0a1a30}
+.btn-sm{padding:7px 14px;font-size:13px;flex:none}
 /* ── FIM BLOCO ── */
 
-/* ═══ BLOCO: TOAST ═══ */
-.toast {
-  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
-  background: var(--gray800); color: white; padding: 13px 24px; border-radius: 40px;
-  font-size: 14px; font-weight: 600; z-index: 999;
-  transition: transform 0.4s cubic-bezier(.34,1.56,.64,1);
-  white-space: nowrap; display: flex; align-items: center; gap: 10px;
-  box-shadow: var(--shadow-lg); max-width: 90vw;
-}
-.toast.show { transform: translateX(-50%) translateY(0); }
-.toast.success { background: var(--green); }
-.toast.error   { background: var(--red); }
-/* ── FIM BLOCO ── */
-
-/* ═══ BLOCO: LOADING ═══ */
-.loading-overlay {
-  position: fixed; inset: 0; background: rgba(15,37,69,0.55);
-  display: none; align-items: center; justify-content: center; z-index: 9999;
-  flex-direction: column; gap: 16px;
-}
-.loading-overlay.show { display: flex; }
-.spinner { width: 48px; height: 48px; border: 4px solid rgba(255,255,255,0.2); border-top-color: var(--orange); border-radius: 50%; animation: spin 0.8s linear infinite; }
-@keyframes spin { to { transform: rotate(360deg); } }
-.loading-text { color: white; font-size: 14px; font-weight: 600; }
+/* ═══ BLOCO: TOAST / LOADING ═══ */
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--gray800);color:white;padding:12px 22px;border-radius:40px;font-size:13px;font-weight:600;z-index:999;transition:transform .4s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;display:flex;align-items:center;gap:8px;box-shadow:var(--shadow-lg);max-width:90vw}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast.success{background:var(--green)}
+.toast.error{background:var(--red)}
+.loading-overlay{position:fixed;inset:0;background:rgba(15,37,69,.55);display:none;align-items:center;justify-content:center;z-index:9999;flex-direction:column;gap:14px}
+.loading-overlay.show{display:flex}
+.spinner{width:44px;height:44px;border:4px solid rgba(255,255,255,.2);border-top-color:var(--orange);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{color:white;font-size:14px;font-weight:600}
 /* ── FIM BLOCO ── */
 
 /* ═══ BLOCO: SUCESSO ═══ */
-.success-screen { text-align: center; padding: 40px 24px; }
-.success-icon { width: 80px; height: 80px; background: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; margin: 0 auto 20px; animation: popIn 0.5s cubic-bezier(.34,1.56,.64,1); }
-@keyframes popIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-.success-title { font-size: 24px; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
-.success-sub   { color: var(--gray600); font-size: 15px; margin-bottom: 28px; }
-.success-info  { background: var(--gray100); border-radius: var(--radius-sm); padding: 16px; margin-bottom: 24px; text-align: left; font-size: 13px; line-height: 1.7; }
+.success-screen{text-align:center;padding:36px 20px}
+.success-icon{width:72px;height:72px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 16px;animation:popIn .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes popIn{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.success-title{font-size:22px;font-weight:800;color:var(--navy);margin-bottom:6px}
+.success-sub{color:var(--gray600);font-size:14px;margin-bottom:24px}
+.success-info{background:var(--gray100);border-radius:var(--radius-sm);padding:14px;margin-bottom:20px;text-align:left;font-size:13px;line-height:1.7}
 /* ── FIM BLOCO ── */
 
-/* ═══ BLOCO: RESPONSIVE ═══ */
-@media (max-width: 480px) {
-  .container { padding: 16px 12px 80px; }
-  .card { padding: 18px; }
-  .form-row { flex-direction: column; gap: 0; margin-bottom: 0; }
-  .form-row .form-group { margin-bottom: 12px; }
-  .radio-group { flex-direction: column; }
-  .btn-row { flex-direction: column; }
-  .preview-assinatura { grid-template-columns: 1fr; }
-  .login-card { padding: 28px 20px; margin-top: 16px; }
-  .gestao-stats { grid-template-columns: repeat(3,1fr); }
-  .gestao-table-wrap { overflow-x: auto; }
+/* ═══ BLOCO: RESPONSIVE / PRINT ═══ */
+@media(max-width:480px){
+  .container{padding:14px 12px 20px}
+  .card{padding:16px}
+  .form-row{flex-direction:column;gap:0;margin-bottom:0}
+  .form-row .form-group{margin-bottom:10px}
+  .radio-group{flex-direction:column}
+  .btn-row{flex-direction:column}
+  .preview-assinatura{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .login-card{padding:24px 18px;margin-top:16px}
 }
-/* ── FIM BLOCO ── */
-
-/* ═══ BLOCO: PRINT ═══ */
-@media print {
-  body { background: white; }
-  .header, .progress-wrap, .btn-row, .card-title,
-  #screen-step1, #screen-step2, #screen-login, #screen-success, #screen-gestao { display: none !important; }
-  .screen#screen-step3 { display: block !important; }
-  .card.preview-card { box-shadow: none; border: none; padding: 0; }
-  .preview-doc { border: none; padding: 0; }
-  #btn-row-step3 { display: none !important; }
+@media print{
+  body{background:white;padding-bottom:0}
+  .header,.progress-wrap,.btn-row,.card-title,.bottom-nav,#screen-step1,#screen-step2,#screen-login,#screen-success,#screen-gestao,#screen-painel,#screen-usuarios,#btn-row-step3{display:none!important}
+  .screen#screen-step3{display:block!important}
+  .card.preview-card{box-shadow:none;border:none;padding:0}
+  .preview-doc{border:none;padding:0}
 }
 /* ── FIM BLOCO ── */
 </style>
@@ -445,14 +321,15 @@ input, select, textarea { font-family: var(--font); }
 <div class="header">
   <img src="logo.png" alt="DIM+ Saúde" class="header-logo">
   <div>
-    <div class="header-title">Termo de Adesão</div>
-    <div class="header-sub">Easy Doctor Representações</div>
+    <div class="header-title">DIM+ Saúde</div>
+    <div class="header-sub">Contratos</div>
   </div>
   <div class="header-right">
-    <button class="btn-gestao" id="btn-gestao" onclick="irGestao()">📋 Gestão</button>
-    <div class="header-vendedor-badge" id="vendedor-badge">
-      <span>👤</span><span id="vendedor-badge-name"></span>
+    <div class="user-badge" id="user-badge">
+      <span id="user-badge-name"></span>
+      <span class="role-pill" id="role-pill"></span>
     </div>
+    <button class="btn-logout" id="btn-logout" onclick="fazerLogout()">Sair</button>
   </div>
 </div>
 <!-- ── FIM BLOCO ── -->
@@ -467,23 +344,93 @@ input, select, textarea { font-family: var(--font); }
 </div>
 <!-- ── FIM BLOCO ── -->
 
+<!-- ═══ BLOCO: BOTTOM NAV ═══ -->
+<nav class="bottom-nav" id="bottom-nav">
+  <button class="nav-item" id="nav-novo" onclick="irNovoContrato()">
+    <span class="nav-icon">➕</span>Novo
+  </button>
+  <button class="nav-item" id="nav-gestao" onclick="irGestao()">
+    <span class="nav-icon">📋</span>Contratos
+  </button>
+  <button class="nav-item" id="nav-painel" onclick="irPainel()">
+    <span class="nav-icon">📊</span>Painel
+  </button>
+  <button class="nav-item" id="nav-usuarios" onclick="irUsuarios()" style="display:none">
+    <span class="nav-icon">👥</span>Usuários
+  </button>
+</nav>
+<!-- ── FIM BLOCO ── -->
+
 <!-- ═══ BLOCO: TOAST / LOADING ═══ -->
 <div class="toast" id="toast"></div>
 <div class="loading-overlay" id="loading"><div class="spinner"></div><div class="loading-text" id="loading-text">Aguarde...</div></div>
 <!-- ── FIM BLOCO ── -->
 
-<!-- ═══ BLOCO: MODAL GESTÃO ═══ -->
-<div class="modal-overlay" id="modal-contrato">
+<!-- ═══ BLOCO: MODAL CONTRATO ═══ -->
+<div class="modal-overlay modal-large" id="modal-contrato">
   <div class="modal-box">
     <div class="modal-header">
-      <div class="modal-header-title">📄 Contrato Salvo</div>
-      <button class="btn-modal-close" onclick="fecharModal()">✕</button>
+      <div class="modal-header-title">📄 Contrato</div>
+      <button class="btn-modal-close" onclick="fecharModal('modal-contrato')">✕</button>
     </div>
     <div class="modal-body">
       <div id="modal-preview-content"></div>
-      <div style="display:flex;gap:12px;margin-top:20px;">
-        <button class="btn btn-navy" style="flex:1;" onclick="window.print()">🖨️ Imprimir</button>
-        <button class="btn btn-secondary" style="flex:1;" onclick="fecharModal()">Fechar</button>
+      <div style="display:flex;gap:10px;margin-top:16px">
+        <button class="btn btn-navy" style="flex:1" onclick="window.print()">🖨️ Imprimir</button>
+        <button class="btn btn-secondary" style="flex:1" onclick="fecharModal('modal-contrato')">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ── FIM BLOCO ── -->
+
+<!-- ═══ BLOCO: MODAL USUÁRIO ═══ -->
+<div class="modal-overlay" id="modal-usuario">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-header-title" id="modal-user-title">👤 Novo Usuário</div>
+      <button class="btn-modal-close" onclick="fecharModal('modal-usuario')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row"><div class="form-group w-full">
+        <label class="form-label">Nome Completo <span class="req">*</span></label>
+        <input type="text" class="form-input" id="u-nome" placeholder="Nome do usuário">
+      </div></div>
+      <div class="form-row"><div class="form-group w-full">
+        <label class="form-label">E-mail <span class="req">*</span></label>
+        <input type="email" class="form-input" id="u-email" placeholder="email@exemplo.com">
+      </div></div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Papel <span class="req">*</span></label>
+          <select class="form-select" id="u-papel">
+            <option value="vendedor">Vendedor(a)</option>
+            <option value="gestor">Gestor(a)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <select class="form-select" id="u-ativo">
+            <option value="true">Ativo</option>
+            <option value="false">Inativo</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row" id="u-senha-row"><div class="form-group w-full">
+        <label class="form-label">Senha <span class="req">*</span></label>
+        <input type="password" class="form-input" id="u-senha" placeholder="Mínimo 6 caracteres" autocomplete="new-password">
+      </div></div>
+      <div id="u-reset-row" style="display:none;margin-bottom:12px">
+        <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer">
+          <input type="checkbox" id="u-reset-senha"> Resetar senha
+        </label>
+        <div id="u-nova-senha-row" style="display:none;margin-top:8px">
+          <input type="password" class="form-input" id="u-nova-senha" placeholder="Nova senha">
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="fecharModal('modal-usuario')">Cancelar</button>
+        <button class="btn btn-primary" onclick="salvarUsuario()">💾 Salvar</button>
       </div>
     </div>
   </div>
@@ -497,14 +444,51 @@ input, select, textarea { font-family: var(--font); }
     <div class="login-card">
       <img src="logo.png" alt="DIM+ Saúde" class="login-logo-img">
       <div class="login-title">DIM+ Saúde</div>
-      <div class="login-sub">Selecione seu nome para continuar</div>
-      <label class="login-label">Você é:</label>
-      <select class="login-select" id="select-vendedor">
-        <option value="">— selecionar —</option>
-        <option value="Rayane Godoy">Rayane Godoy</option>
-        <option value="Sandra">Sandra</option>
-      </select>
-      <button class="btn-login" onclick="fazerLogin()">Entrar →</button>
+      <div class="login-sub">Acesse sua conta para continuar</div>
+      <div class="login-field">
+        <label class="login-label">E-mail</label>
+        <input type="email" class="login-input" id="l-email" placeholder="seu@email.com" autocomplete="email" onkeydown="if(event.key==='Enter')document.getElementById('l-senha').focus()">
+      </div>
+      <div class="login-field">
+        <label class="login-label">Senha</label>
+        <input type="password" class="login-input" id="l-senha" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')fazerLogin()">
+      </div>
+      <div class="login-error" id="login-error">E-mail ou senha incorretos.</div>
+      <button class="btn-login-submit" onclick="fazerLogin()">Entrar →</button>
+    </div>
+  </div>
+
+  <!-- ════════ SCREEN PAINEL ════════ -->
+  <div class="screen" id="screen-painel">
+    <div class="page-title">📊 <span id="painel-titulo">Painel</span></div>
+
+    <div class="period-btns">
+      <button class="period-btn active" data-p="mes" onclick="setPeriodo('mes',this)">Este mês</button>
+      <button class="period-btn" data-p="trim" onclick="setPeriodo('trim',this)">Trimestre</button>
+      <button class="period-btn" data-p="ano" onclick="setPeriodo('ano',this)">Este ano</button>
+      <button class="period-btn" data-p="todos" onclick="setPeriodo('todos',this)">Todos</button>
+    </div>
+
+    <div class="stats-grid" id="painel-stats">
+      <div class="stat-card c-orange"><div class="stat-num" id="st-total">—</div><div class="stat-label">Contratos</div><div class="stat-sub" id="st-total-sub"></div></div>
+      <div class="stat-card c-green"><div class="stat-num" id="st-mrr">—</div><div class="stat-label">MRR Est.</div><div class="stat-sub">mensalidades</div></div>
+      <div class="stat-card c-blue"><div class="stat-num" id="st-deps">—</div><div class="stat-label">Dependentes</div></div>
+      <div class="stat-card c-gold"><div class="stat-num" id="st-ticket">—</div><div class="stat-label">Ticket Médio</div></div>
+    </div>
+
+    <div class="chart-wrap" id="wrap-vendedores" style="display:none">
+      <div class="chart-title">🏆 Ranking Vendedores</div>
+      <div class="bar-chart" id="chart-vendedores"></div>
+    </div>
+
+    <div class="chart-wrap">
+      <div class="chart-title">📈 Evolução Mensal (6 meses)</div>
+      <div id="chart-evolucao"></div>
+    </div>
+
+    <div class="chart-wrap">
+      <div class="chart-title">💳 Planos</div>
+      <div class="bar-chart" id="chart-planos"></div>
     </div>
   </div>
 
@@ -512,118 +496,48 @@ input, select, textarea { font-family: var(--font); }
   <div class="screen" id="screen-step1">
     <div class="card">
       <div class="card-title"><div class="card-title-icon">📋</div>Dados do Titular</div>
+      <div class="form-row"><div class="form-group w-full">
+        <label class="form-label">Nome Completo <span class="req">*</span></label>
+        <input type="text" class="form-input" id="t-nome" placeholder="Nome como no documento" autocomplete="name">
+      </div></div>
       <div class="form-row">
-        <div class="form-group w-full">
-          <label class="form-label">Nome Completo <span class="required">*</span></label>
-          <input type="text" class="form-input" id="t-nome" placeholder="Nome como no documento" autocomplete="name">
-        </div>
+        <div class="form-group w-2"><label class="form-label">CPF <span class="req">*</span></label><input type="tel" class="form-input" id="t-cpf" placeholder="000.000.000-00" maxlength="14" oninput="mascaraCPF(this)"></div>
+        <div class="form-group"><label class="form-label">Idade</label><input type="number" class="form-input" id="t-idade" placeholder="00" min="0" max="120"></div>
+        <div class="form-group"><label class="form-label">Sexo</label><select class="form-select" id="t-sexo"><option value="">—</option><option value="F">F</option><option value="M">M</option></select></div>
+      </div>
+      <div class="form-row"><div class="form-group w-2">
+        <label class="form-label">Nascimento <span class="req">*</span></label>
+        <input type="tel" class="form-input" id="t-nasc" placeholder="DD/MM/AAAA" maxlength="10" oninput="mascaraData(this)">
+      </div></div>
+      <div class="form-row">
+        <div class="form-group w-3"><label class="form-label">Endereço</label><input type="text" class="form-input" id="t-end" placeholder="Rua, Av..."></div>
+        <div class="form-group"><label class="form-label">Nº</label><input type="text" class="form-input" id="t-num" placeholder="00"></div>
+        <div class="form-group"><label class="form-label">Compl.</label><input type="text" class="form-input" id="t-compl" placeholder="Casa..."></div>
       </div>
       <div class="form-row">
-        <div class="form-group w-2">
-          <label class="form-label">CPF <span class="required">*</span></label>
-          <input type="tel" class="form-input" id="t-cpf" placeholder="000.000.000-00" maxlength="14" oninput="mascaraCPF(this)">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Idade</label>
-          <input type="number" class="form-input" id="t-idade" placeholder="00" min="0" max="120">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Sexo</label>
-          <select class="form-select" id="t-sexo">
-            <option value="">—</option>
-            <option value="F">F</option>
-            <option value="M">M</option>
-          </select>
-        </div>
+        <div class="form-group w-2"><label class="form-label">Bairro</label><input type="text" class="form-input" id="t-bairro" placeholder="Bairro"></div>
+        <div class="form-group w-2"><label class="form-label">Cidade</label><input type="text" class="form-input" id="t-cidade" placeholder="Cidade"></div>
+        <div class="form-group"><label class="form-label">CEP</label><input type="tel" class="form-input" id="t-cep" placeholder="00000-000" maxlength="9" oninput="mascaraCEP(this)"></div>
       </div>
-      <div class="form-row">
-        <div class="form-group w-2">
-          <label class="form-label">Data de Nascimento <span class="required">*</span></label>
-          <input type="tel" class="form-input" id="t-nasc" placeholder="DD/MM/AAAA" maxlength="10" oninput="mascaraData(this)">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group w-3">
-          <label class="form-label">Endereço</label>
-          <input type="text" class="form-input" id="t-end" placeholder="Rua, Av...">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Número</label>
-          <input type="text" class="form-input" id="t-num" placeholder="00">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Compl.</label>
-          <input type="text" class="form-input" id="t-compl" placeholder="Casa, Ap...">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group w-2">
-          <label class="form-label">Bairro</label>
-          <input type="text" class="form-input" id="t-bairro" placeholder="Bairro">
-        </div>
-        <div class="form-group w-2">
-          <label class="form-label">Cidade</label>
-          <input type="text" class="form-input" id="t-cidade" placeholder="Cidade">
-        </div>
-        <div class="form-group">
-          <label class="form-label">CEP</label>
-          <input type="tel" class="form-input" id="t-cep" placeholder="00000-000" maxlength="9" oninput="mascaraCEP(this)">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group w-full">
-          <label class="form-label">E-mail</label>
-          <input type="email" class="form-input" id="t-email" placeholder="email@exemplo.com">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group w-full">
-          <label class="form-label">Telefone / WhatsApp <span class="required">*</span></label>
-          <input type="tel" class="form-input" id="t-tel" placeholder="(11) 99999-9999" maxlength="15" oninput="mascaraTel(this)">
-        </div>
-      </div>
+      <div class="form-row"><div class="form-group w-full"><label class="form-label">E-mail</label><input type="email" class="form-input" id="t-email" placeholder="email@exemplo.com"></div></div>
+      <div class="form-row"><div class="form-group w-full"><label class="form-label">Telefone / WhatsApp <span class="req">*</span></label><input type="tel" class="form-input" id="t-tel" placeholder="(11) 99999-9999" maxlength="15" oninput="mascaraTel(this)"></div></div>
     </div>
-
     <div class="card">
       <div class="card-title"><div class="card-title-icon">💳</div>Tipo de Assinatura</div>
       <div class="radio-group" id="grupo-plano">
-        <label class="radio-card" id="rc-basico">
-          <input type="radio" name="plano" value="DIM+ BÁSICO" onchange="selectRadio('grupo-plano','rc-basico')">
-          <div class="radio-check"></div>
-          <div class="radio-card-title">DIM+ BÁSICO</div>
-          <div class="radio-card-price">Taxa adesão: R$ 29,90<br>12× R$ 39,90 (R$ 508,70)<br>ou à vista R$ 448,70</div>
-        </label>
-        <label class="radio-card" id="rc-plus">
-          <input type="radio" name="plano" value="DIM+ BÁSICO PLUS" onchange="selectRadio('grupo-plano','rc-plus')">
-          <div class="radio-check"></div>
-          <div class="radio-card-title">DIM+ BÁSICO PLUS</div>
-          <div class="radio-card-price">Taxa adesão: R$ 29,90<br>12× R$ 79,90 (R$ 988,70)<br>ou à vista R$ 879,80</div>
-        </label>
+        <label class="radio-card" id="rc-basico"><input type="radio" name="plano" value="DIM+ BÁSICO" onchange="selectRadio('grupo-plano','rc-basico')"><div class="radio-check"></div><div class="radio-card-title">DIM+ BÁSICO</div><div class="radio-card-price">Adesão R$29,90<br>12× R$39,90<br>ou à vista R$448,70</div></label>
+        <label class="radio-card" id="rc-plus"><input type="radio" name="plano" value="DIM+ BÁSICO PLUS" onchange="selectRadio('grupo-plano','rc-plus')"><div class="radio-check"></div><div class="radio-card-title">DIM+ BÁSICO PLUS</div><div class="radio-card-price">Adesão R$29,90<br>12× R$79,90<br>ou à vista R$879,80</div></label>
       </div>
     </div>
-
     <div class="card">
       <div class="card-title"><div class="card-title-icon">💰</div>Forma de Pagamento</div>
-      <div class="radio-group" id="grupo-pgto" style="margin-bottom:16px;">
-        <label class="radio-card" id="rc-boleto">
-          <input type="radio" name="pgto" value="Boleto" onchange="selectRadio('grupo-pgto','rc-boleto')">
-          <div class="radio-check"></div>
-          <div class="radio-card-title">🧾 Boleto</div>
-        </label>
-        <label class="radio-card" id="rc-credito">
-          <input type="radio" name="pgto" value="Cartão de Crédito" onchange="selectRadio('grupo-pgto','rc-credito')">
-          <div class="radio-check"></div>
-          <div class="radio-card-title">💳 Crédito</div>
-        </label>
-        <label class="radio-card" id="rc-avista">
-          <input type="radio" name="pgto" value="À Vista (PIX/DEB)" onchange="selectRadio('grupo-pgto','rc-avista')">
-          <div class="radio-check"></div>
-          <div class="radio-card-title">📲 À Vista</div>
-          <div class="radio-card-price">PIX / Débito</div>
-        </label>
+      <div class="radio-group" id="grupo-pgto" style="margin-bottom:14px">
+        <label class="radio-card" id="rc-boleto"><input type="radio" name="pgto" value="Boleto" onchange="selectRadio('grupo-pgto','rc-boleto')"><div class="radio-check"></div><div class="radio-card-title">🧾 Boleto</div></label>
+        <label class="radio-card" id="rc-credito"><input type="radio" name="pgto" value="Cartão de Crédito" onchange="selectRadio('grupo-pgto','rc-credito')"><div class="radio-check"></div><div class="radio-card-title">💳 Crédito</div></label>
+        <label class="radio-card" id="rc-avista"><input type="radio" name="pgto" value="À Vista (PIX/DEB)" onchange="selectRadio('grupo-pgto','rc-avista')"><div class="radio-check"></div><div class="radio-card-title">📲 À Vista</div></label>
       </div>
       <div class="form-group">
-        <label class="form-label">Data de Vencimento</label>
+        <label class="form-label">Vencimento</label>
         <div class="radio-group" id="grupo-venc">
           <label class="radio-card" id="rc-d10"><input type="radio" name="venc" value="10" onchange="selectRadio('grupo-venc','rc-d10')"><div class="radio-check"></div><div class="radio-card-title">Dia 10</div></label>
           <label class="radio-card" id="rc-d20"><input type="radio" name="venc" value="20" onchange="selectRadio('grupo-venc','rc-d20')"><div class="radio-check"></div><div class="radio-card-title">Dia 20</div></label>
@@ -631,9 +545,8 @@ input, select, textarea { font-family: var(--font); }
         </div>
       </div>
     </div>
-
     <div class="btn-row">
-      <button class="btn btn-secondary" onclick="voltarLogin()">← Sair</button>
+      <button class="btn btn-secondary" onclick="irPainel()">← Voltar</button>
       <button class="btn btn-primary" onclick="irStep2()">Dependentes →</button>
     </div>
   </div>
@@ -641,7 +554,7 @@ input, select, textarea { font-family: var(--font); }
   <!-- ════════ SCREEN STEP2: DEPENDENTES ════════ -->
   <div class="screen" id="screen-step2">
     <div class="card">
-      <div class="card-title"><div class="card-title-icon">👨‍👩‍👧</div>Dependentes (opcional — até 4)</div>
+      <div class="card-title"><div class="card-title-icon">👨‍👩‍👧</div>Dependentes (até 4)</div>
       <div id="deps-container"></div>
       <button class="btn-add-dep" id="btn-add-dep" onclick="adicionarDep()">+ Adicionar Dependente</button>
     </div>
@@ -654,32 +567,21 @@ input, select, textarea { font-family: var(--font); }
   <!-- ════════ SCREEN STEP3: REVISÃO ════════ -->
   <div class="screen" id="screen-step3">
     <div class="card preview-card">
-      <div class="card-title"><div class="card-title-icon">📄</div>Pré-visualização do Contrato</div>
+      <div class="card-title"><div class="card-title-icon">📄</div>Pré-visualização</div>
       <div class="preview-doc" id="preview-content"></div>
     </div>
-
-    <!-- Assinatura Digital -->
     <div class="card">
       <div class="card-title"><div class="card-title-icon">✍️</div>Assinatura do Contratante</div>
-      <p style="font-size:13px;color:var(--gray600);margin-bottom:12px;">
-        Assine abaixo usando o dedo (celular) ou o mouse (computador).
-      </p>
+      <p style="font-size:13px;color:var(--gray600);margin-bottom:10px">Assine com o dedo ou mouse.</p>
       <div class="assin-wrap">
-        <div class="assin-label-bar">
-          <span>Área de assinatura</span>
-          <button class="btn-clear-assin" onclick="limparAssinatura()">✕ Limpar</button>
-        </div>
-        <div style="position:relative;">
-          <canvas class="assin-canvas" id="assin-canvas" height="140"></canvas>
-          <div class="assin-hint" id="assin-hint">✍️ Assine aqui</div>
-        </div>
+        <div class="assin-label-bar"><span>Área de assinatura</span><button class="btn-clear-assin" onclick="limparAssinatura()">✕ Limpar</button></div>
+        <div style="position:relative"><canvas class="assin-canvas" id="assin-canvas" height="130"></canvas><div class="assin-hint" id="assin-hint">✍️ Assine aqui</div></div>
         <div class="assin-status pending" id="assin-status">⬜ Aguardando assinatura</div>
       </div>
     </div>
-
     <div class="btn-row" id="btn-row-step3">
       <button class="btn btn-secondary" onclick="irStep2()">← Editar</button>
-      <button class="btn btn-navy" onclick="window.print()">🖨️ Imprimir</button>
+      <button class="btn btn-navy" onclick="window.print()">🖨️</button>
       <button class="btn btn-success" onclick="salvarContrato()">💾 Salvar</button>
     </div>
   </div>
@@ -690,12 +592,11 @@ input, select, textarea { font-family: var(--font); }
       <div class="success-screen">
         <div class="success-icon">✓</div>
         <div class="success-title">Contrato Salvo!</div>
-        <div class="success-sub">Dados enviados para a planilha DIM+ Saúde.</div>
+        <div class="success-sub">Dados enviados para a planilha.</div>
         <div class="success-info" id="success-info"></div>
-        <div class="btn-row" style="flex-direction:column;">
-          <button class="btn btn-navy" onclick="novoContrato()">+ Novo Contrato</button>
-          <button class="btn btn-secondary" onclick="irGestao()">📋 Ver Gestão</button>
-          <button class="btn btn-secondary" onclick="window.print()">🖨️ Imprimir</button>
+        <div class="btn-row" style="flex-direction:column">
+          <button class="btn btn-primary" onclick="irNovoContrato()">+ Novo Contrato</button>
+          <button class="btn btn-navy" onclick="irGestao()">📋 Ver Gestão</button>
         </div>
       </div>
     </div>
@@ -704,31 +605,33 @@ input, select, textarea { font-family: var(--font); }
   <!-- ════════ SCREEN GESTÃO ════════ -->
   <div class="screen" id="screen-gestao">
     <div class="gestao-header">
-      <div class="gestao-title">📋 Gestão de Contratos</div>
-      <button class="btn btn-primary" style="flex:none;padding:10px 18px;font-size:13px;" onclick="irStep1()">+ Novo Contrato</button>
+      <div class="page-title" style="margin-bottom:0">📋 Contratos</div>
+      <button class="btn btn-primary btn-sm" onclick="irNovoContrato()">+ Novo</button>
     </div>
-
-    <div class="gestao-stats">
-      <div class="gestao-stat"><div class="gestao-stat-num" id="stat-total">—</div><div class="gestao-stat-label">Total</div></div>
-      <div class="gestao-stat"><div class="gestao-stat-num" id="stat-mes">—</div><div class="gestao-stat-label">Este Mês</div></div>
-      <div class="gestao-stat"><div class="gestao-stat-num" id="stat-deps">—</div><div class="gestao-stat-label">Dependentes</div></div>
+    <div class="gestao-filters" id="gestao-filters" style="margin-bottom:12px">
+      <button class="filter-btn active" data-f="todos" onclick="filtrarGestao('todos',this)">Todos</button>
+      <button class="filter-btn" data-f="Ativo" onclick="filtrarGestao('Ativo',this)">Ativos</button>
+      <button class="filter-btn" data-f="Pendente" onclick="filtrarGestao('Pendente',this)">Pendentes</button>
+      <button class="filter-btn" data-f="Cancelado" onclick="filtrarGestao('Cancelado',this)">Cancelados</button>
     </div>
-
-    <div class="gestao-filters" id="gestao-filters" style="margin-bottom:14px;">
-      <button class="gestao-filter active" data-filtro="todos" onclick="filtrarVendedor('todos',this)">Todos</button>
-      <button class="gestao-filter" data-filtro="Rayane Godoy" onclick="filtrarVendedor('Rayane Godoy',this)">Rayane</button>
-      <button class="gestao-filter" data-filtro="Sandra" onclick="filtrarVendedor('Sandra',this)">Sandra</button>
+    <div id="vendedor-filters" style="margin-bottom:12px;display:none">
+      <div class="gestao-filters" id="vendedor-filter-btns"></div>
     </div>
-
-    <input type="search" class="gestao-search" id="gestao-search" placeholder="🔍 Buscar por nome ou CPF..." oninput="renderTabela()">
-
-    <div class="gestao-table-wrap">
-      <div class="gestao-loading" id="gestao-loading">
-        <div class="spinner" style="margin:0 auto 12px;border-top-color:var(--orange);"></div>
-        Carregando contratos...
-      </div>
-      <div id="gestao-table-area" style="display:none;"></div>
+    <input type="search" class="gestao-search" id="gestao-search" placeholder="🔍 Nome ou CPF..." oninput="renderTabelaGestao()">
+    <div class="table-wrap">
+      <div class="loading-state" id="gestao-loading"><div class="spinner" style="margin:0 auto 10px;border-top-color:var(--orange)"></div>Carregando...</div>
+      <div id="gestao-table-area" style="display:none"></div>
     </div>
+  </div>
+
+  <!-- ════════ SCREEN USUÁRIOS ════════ -->
+  <div class="screen" id="screen-usuarios">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+      <div class="page-title" style="margin-bottom:0">👥 Usuários</div>
+      <button class="btn btn-primary btn-sm" onclick="abrirModalNovoUsuario()">+ Novo Usuário</button>
+    </div>
+    <div class="loading-state" id="usuarios-loading"><div class="spinner" style="margin:0 auto 10px;border-top-color:var(--orange)"></div>Carregando...</div>
+    <div id="usuarios-lista" style="display:none"></div>
   </div>
 
 </div><!-- /container -->
@@ -737,585 +640,537 @@ input, select, textarea { font-family: var(--font); }
 // ═══ BLOCO: CONSTANTES GLOBAIS ═══
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby3cQ6YStUlB7BDKD38lnlSLY1icUE4iPD0XXH4MolyciZbd_ZYyfVf5cDgIK0Srxjo/exec';
 const MAX_DEPS = 4;
+const TICKET_BASICO = 39.90;
+const TICKET_PLUS   = 79.90;
 
 let state = {
-  vendedor: '',
+  session: null,      // {email, nome, papel, exp}
   deps: [],
   assinatura: '',
+  periodo: 'mes',
+  filtroStatus: 'todos',
   filtroVendedor: 'todos',
-  contratos: []
+  contratos: [],
+  usuarios: [],
+  editandoUsuario: null
 };
 // ── FIM BLOCO ──
 
-// ═══ BLOCO: MÁSCARAS ═══
-function mascaraCPF(el) {
-  let v = el.value.replace(/\D/g,'').slice(0,11);
-  if(v.length>9)      v=v.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/,'$1.$2.$3-$4');
-  else if(v.length>6) v=v.replace(/(\d{3})(\d{3})(\d{3})/,'$1.$2.$3');
-  else if(v.length>3) v=v.replace(/(\d{3})(\d{3})/,'$1.$2');
-  el.value=v;
-}
-function mascaraTel(el) {
-  let v = el.value.replace(/\D/g,'').slice(0,11);
-  if(v.length>10)     v=v.replace(/(\d{2})(\d{5})(\d{4})/,'($1) $2-$3');
-  else if(v.length>6) v=v.replace(/(\d{2})(\d{4})(\d{0,4})/,'($1) $2-$3');
-  else if(v.length>2) v=v.replace(/(\d{2})(\d{0,5})/,'($1) $2');
-  el.value=v;
-}
-function mascaraData(el) {
-  let v = el.value.replace(/\D/g,'').slice(0,8);
-  if(v.length>4)      v=v.replace(/(\d{2})(\d{2})(\d{4})/,'$1/$2/$3');
-  else if(v.length>2) v=v.replace(/(\d{2})(\d{2})/,'$1/$2');
-  el.value=v;
-}
-function mascaraCEP(el) {
-  let v = el.value.replace(/\D/g,'').slice(0,8);
-  if(v.length>5) v=v.replace(/(\d{5})(\d{3})/,'$1-$2');
-  el.value=v;
-}
-// ── FIM BLOCO ──
-
-// ═══ BLOCO: RADIO CARDS ═══
-function selectRadio(grupoId, cardId) {
-  document.getElementById(grupoId)?.querySelectorAll('.radio-card').forEach(c => c.classList.remove('selected'));
-  document.getElementById(cardId)?.classList.add('selected');
-}
-// ── FIM BLOCO ──
-
-// ═══ BLOCO: NAVEGAÇÃO ═══
-function mostrarScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById('screen-'+id).classList.add('active');
-  window.scrollTo({ top:0, behavior:'smooth' });
-}
-function atualizarProgress(step) {
-  const wrap = document.getElementById('progress-wrap');
-  const map = {step1:1, step2:2, step3:3};
-  const n = map[step] || 0;
-  if (!n) { wrap.classList.remove('show'); return; }
-  wrap.classList.add('show');
-  [1,2,3].forEach(i => {
-    const el = document.getElementById('pstep-'+i);
-    el.classList.remove('active','done');
-    if(i<n) el.classList.add('done');
-    if(i===n) el.classList.add('active');
+// ═══ BLOCO: FETCH HELPER ═══
+async function apiFetch(payload) {
+  const res = await fetch(APPS_SCRIPT_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify(payload)
   });
+  return res.json();
+}
+async function apiGet(params) {
+  const qs = new URLSearchParams(params).toString();
+  const res = await fetch(APPS_SCRIPT_URL + '?' + qs);
+  return res.json();
 }
 // ── FIM BLOCO ──
 
-// ═══ BLOCO: LOGIN ═══
-function fazerLogin() {
-  const sel = document.getElementById('select-vendedor');
-  if(!sel.value) { showToast('Selecione seu nome', 'error'); return; }
-  state.vendedor = sel.value;
-  localStorage.setItem('dimplus_vendedor', sel.value);
-  document.getElementById('vendedor-badge').classList.add('show');
-  document.getElementById('vendedor-badge-name').textContent = sel.value;
-  document.getElementById('btn-gestao').classList.add('show');
-  mostrarScreen('step1');
-  atualizarProgress('step1');
+// ═══ BLOCO: AUTH ═══
+async function fazerLogin() {
+  const email = document.getElementById('l-email').value.trim();
+  const senha = document.getElementById('l-senha').value;
+  if (!email || !senha) { showToast('Preencha e-mail e senha', 'error'); return; }
+  mostrarLoading(true, 'Entrando...');
+  try {
+    const data = await apiFetch({ action: 'login', email, senha });
+    mostrarLoading(false);
+    if (data.ok) {
+      const session = { email: data.email, nome: data.nome, papel: data.papel, exp: Date.now() + 8*60*60*1000 };
+      localStorage.setItem('dimplus_session', JSON.stringify(session));
+      state.session = session;
+      aplicarSession();
+      irPainel();
+    } else {
+      document.getElementById('login-error').classList.add('show');
+    }
+  } catch(e) {
+    mostrarLoading(false);
+    showToast('Erro de conexão. Verifique internet.', 'error');
+  }
 }
-function voltarLogin() {
-  state.vendedor = '';
-  localStorage.removeItem('dimplus_vendedor');
-  document.getElementById('vendedor-badge').classList.remove('show');
-  document.getElementById('btn-gestao').classList.remove('show');
+
+function checkAuth() {
+  const saved = localStorage.getItem('dimplus_session');
+  if (!saved) return null;
+  try {
+    const s = JSON.parse(saved);
+    if (Date.now() > s.exp) { localStorage.removeItem('dimplus_session'); return null; }
+    return s;
+  } catch(_) { return null; }
+}
+
+function aplicarSession() {
+  const s = state.session;
+  if (!s) return;
+  document.getElementById('user-badge').classList.add('show');
+  document.getElementById('user-badge-name').textContent = s.nome.split(' ')[0];
+  const pill = document.getElementById('role-pill');
+  pill.textContent = s.papel === 'gestor' ? 'Gestor' : 'Vendedor';
+  pill.className = 'role-pill role-' + s.papel;
+  document.getElementById('btn-logout').classList.add('show');
+  document.getElementById('bottom-nav').classList.add('show');
+  // Mostrar nav de usuários só para gestor
+  document.getElementById('nav-usuarios').style.display = s.papel === 'gestor' ? 'flex' : 'none';
+}
+
+function fazerLogout() {
+  localStorage.removeItem('dimplus_session');
+  state.session = null;
+  document.getElementById('user-badge').classList.remove('show');
+  document.getElementById('btn-logout').classList.remove('show');
+  document.getElementById('bottom-nav').classList.remove('show');
+  document.getElementById('l-email').value = '';
+  document.getElementById('l-senha').value = '';
+  document.getElementById('login-error').classList.remove('show');
   mostrarScreen('login');
   atualizarProgress('');
 }
 // ── FIM BLOCO ──
 
-// ═══ BLOCO: STEPS ═══
-function getValorTitular() {
-  return {
-    nome:   document.getElementById('t-nome').value.trim(),
-    cpf:    document.getElementById('t-cpf').value.trim(),
-    idade:  document.getElementById('t-idade').value.trim(),
-    sexo:   document.getElementById('t-sexo').value,
-    nasc:   document.getElementById('t-nasc').value.trim(),
-    end:    document.getElementById('t-end').value.trim(),
-    num:    document.getElementById('t-num').value.trim(),
-    compl:  document.getElementById('t-compl').value.trim(),
-    bairro: document.getElementById('t-bairro').value.trim(),
-    cidade: document.getElementById('t-cidade').value.trim(),
-    cep:    document.getElementById('t-cep').value.trim(),
-    email:  document.getElementById('t-email').value.trim(),
-    tel:    document.getElementById('t-tel').value.trim(),
-    plano:  document.querySelector('input[name="plano"]:checked')?.value || '',
-    pgto:   document.querySelector('input[name="pgto"]:checked')?.value || '',
-    venc:   document.querySelector('input[name="venc"]:checked')?.value || '',
-  };
+// ═══ BLOCO: MÁSCARAS ═══
+function mascaraCPF(el){let v=el.value.replace(/\D/g,'').slice(0,11);if(v.length>9)v=v.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/,'$1.$2.$3-$4');else if(v.length>6)v=v.replace(/(\d{3})(\d{3})(\d{3})/,'$1.$2.$3');else if(v.length>3)v=v.replace(/(\d{3})(\d{3})/,'$1.$2');el.value=v}
+function mascaraTel(el){let v=el.value.replace(/\D/g,'').slice(0,11);if(v.length>10)v=v.replace(/(\d{2})(\d{5})(\d{4})/,'($1) $2-$3');else if(v.length>6)v=v.replace(/(\d{2})(\d{4})(\d{0,4})/,'($1) $2-$3');else if(v.length>2)v=v.replace(/(\d{2})(\d{0,5})/,'($1) $2');el.value=v}
+function mascaraData(el){let v=el.value.replace(/\D/g,'').slice(0,8);if(v.length>4)v=v.replace(/(\d{2})(\d{2})(\d{4})/,'$1/$2/$3');else if(v.length>2)v=v.replace(/(\d{2})(\d{2})/,'$1/$2');el.value=v}
+function mascaraCEP(el){let v=el.value.replace(/\D/g,'').slice(0,8);if(v.length>5)v=v.replace(/(\d{5})(\d{3})/,'$1-$2');el.value=v}
+// ── FIM BLOCO ──
+
+// ═══ BLOCO: RADIO ═══
+function selectRadio(g,id){document.getElementById(g)?.querySelectorAll('.radio-card').forEach(c=>c.classList.remove('selected'));document.getElementById(id)?.classList.add('selected')}
+// ── FIM BLOCO ──
+
+// ═══ BLOCO: NAVEGAÇÃO ═══
+function mostrarScreen(id) {
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-'+id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  // Atualizar nav ativa
+  ['nav-novo','nav-gestao','nav-painel','nav-usuarios'].forEach(n=>document.getElementById(n)?.classList.remove('active'));
+  const map = {step1:'nav-novo',step2:'nav-novo',step3:'nav-novo',gestao:'nav-gestao',painel:'nav-painel',usuarios:'nav-usuarios'};
+  if(map[id]) document.getElementById(map[id])?.classList.add('active');
 }
-function irStep1() { mostrarScreen('step1'); atualizarProgress('step1'); }
-function irStep2() {
-  const t = getValorTitular();
-  if(!t.nome||!t.cpf||!t.nasc||!t.tel) { showToast('Preencha: Nome, CPF, Nascimento e Telefone','error'); return; }
-  if(!t.plano) { showToast('Selecione um plano','error'); return; }
-  if(!t.pgto)  { showToast('Selecione a forma de pagamento','error'); return; }
-  if(!t.venc)  { showToast('Selecione o dia de vencimento','error'); return; }
-  renderDeps();
-  mostrarScreen('step2');
-  atualizarProgress('step2');
+function atualizarProgress(step) {
+  const wrap = document.getElementById('progress-wrap');
+  const m = {step1:1,step2:2,step3:3};
+  const n = m[step]||0;
+  if(!n){wrap.classList.remove('show');return}
+  wrap.classList.add('show');
+  [1,2,3].forEach(i=>{const el=document.getElementById('pstep-'+i);el.classList.remove('active','done');if(i<n)el.classList.add('done');if(i===n)el.classList.add('active')});
 }
-function irStep3() {
-  coletarDeps();
-  renderPreview();
-  mostrarScreen('step3');
-  atualizarProgress('step3');
-  setTimeout(initAssinatura, 100);
+function irNovoContrato(){mostrarScreen('step1');atualizarProgress('step1')}
+function irStep1(){mostrarScreen('step1');atualizarProgress('step1')}
+function irStep2(){
+  const t=getValorTitular();
+  if(!t.nome||!t.cpf||!t.nasc||!t.tel){showToast('Preencha: Nome, CPF, Nascimento e Telefone','error');return}
+  if(!t.plano){showToast('Selecione um plano','error');return}
+  if(!t.pgto){showToast('Selecione a forma de pagamento','error');return}
+  if(!t.venc){showToast('Selecione o dia de vencimento','error');return}
+  renderDeps();mostrarScreen('step2');atualizarProgress('step2');
 }
+function irStep3(){coletarDeps();renderPreview();mostrarScreen('step3');atualizarProgress('step3');setTimeout(initAssinatura,100)}
+async function irGestao(){
+  mostrarScreen('gestao');atualizarProgress('');
+  await carregarContratos();
+}
+async function irPainel(){
+  mostrarScreen('painel');atualizarProgress('');
+  document.getElementById('painel-titulo').textContent = state.session?.papel==='gestor' ? 'Painel Geral' : 'Meu Painel';
+  if(!state.contratos.length) await carregarContratos();
+  renderPainel();
+}
+async function irUsuarios(){
+  if(state.session?.papel!=='gestor'){showToast('Acesso restrito a gestores','error');return}
+  mostrarScreen('usuarios');atualizarProgress('');
+  await carregarUsuarios();
+}
+// ── FIM BLOCO ──
+
+// ═══ BLOCO: TITULAR ═══
+function getValorTitular(){return{nome:document.getElementById('t-nome').value.trim(),cpf:document.getElementById('t-cpf').value.trim(),idade:document.getElementById('t-idade').value.trim(),sexo:document.getElementById('t-sexo').value,nasc:document.getElementById('t-nasc').value.trim(),end:document.getElementById('t-end').value.trim(),num:document.getElementById('t-num').value.trim(),compl:document.getElementById('t-compl').value.trim(),bairro:document.getElementById('t-bairro').value.trim(),cidade:document.getElementById('t-cidade').value.trim(),cep:document.getElementById('t-cep').value.trim(),email:document.getElementById('t-email').value.trim(),tel:document.getElementById('t-tel').value.trim(),plano:document.querySelector('input[name="plano"]:checked')?.value||'',pgto:document.querySelector('input[name="pgto"]:checked')?.value||'',venc:document.querySelector('input[name="venc"]:checked')?.value||''}}
 // ── FIM BLOCO ──
 
 // ═══ BLOCO: DEPENDENTES ═══
-function renderDeps() {
-  const cont = document.getElementById('deps-container');
-  cont.innerHTML = '';
-  state.deps.forEach((_,i) => renderDepItem(i));
-  atualizarBtnAddDep();
-}
-function renderDepItem(i) {
-  const cont = document.getElementById('deps-container');
-  const d = state.deps[i] || {};
-  const isFilled = d.nome && d.nome.trim().length > 0;
-  const div = document.createElement('div');
-  div.className = `dep-item ${isFilled?'filled':''} ${i===0?'open':''}`;
-  div.id = 'dep-'+i;
-  div.innerHTML = `
-    <div class="dep-header" onclick="toggleDep(${i})">
-      <div class="dep-header-title">
-        <div class="dep-num">${i+1}</div>
-        ${isFilled ? '<span style="color:var(--navy)">'+escHtml(d.nome)+'</span>' : 'Dependente '+(i+1)}
-      </div>
-      <div style="display:flex;gap:12px;align-items:center;">
-        <span style="font-size:12px;color:var(--red);cursor:pointer;" onclick="removerDep(event,${i})">✕ remover</span>
-        <div class="dep-arrow">▼</div>
-      </div>
-    </div>
-    <div class="dep-body">
-      <div class="form-row">
-        <div class="form-group w-full"><label class="form-label">Nome Completo</label>
-          <input type="text" class="form-input dep-field" data-idx="${i}" data-field="nome" value="${escHtml(d.nome||'')}" placeholder="Nome do dependente"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group w-2"><label class="form-label">CPF</label>
-          <input type="tel" class="form-input dep-field" data-idx="${i}" data-field="cpf" value="${escHtml(d.cpf||'')}" placeholder="000.000.000-00" maxlength="14" oninput="mascaraCPF(this)"></div>
-        <div class="form-group"><label class="form-label">Parentesco</label>
-          <select class="form-select dep-field" data-idx="${i}" data-field="parentesco">
-            ${['','Cônjuge','Filho(a)','Neto(a)','Pai','Mãe','Irmão/Irmã','Outro'].map(p=>`<option value="${p}" ${d.parentesco===p?'selected':''}>${p||'—'}</option>`).join('')}
-          </select></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group w-2"><label class="form-label">Data Nascimento</label>
-          <input type="tel" class="form-input dep-field" data-idx="${i}" data-field="nasc" value="${escHtml(d.nasc||'')}" placeholder="DD/MM/AAAA" maxlength="10" oninput="mascaraData(this)"></div>
-        <div class="form-group"><label class="form-label">Idade</label>
-          <input type="number" class="form-input dep-field" data-idx="${i}" data-field="idade" value="${escHtml(d.idade||'')}" placeholder="00" min="0" max="120"></div>
-        <div class="form-group"><label class="form-label">Sexo</label>
-          <select class="form-select dep-field" data-idx="${i}" data-field="sexo">
-            <option value="" ${!d.sexo?'selected':''}>—</option>
-            <option value="F" ${d.sexo==='F'?'selected':''}>F</option>
-            <option value="M" ${d.sexo==='M'?'selected':''}>M</option>
-          </select></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group w-3"><label class="form-label">Endereço</label>
-          <input type="text" class="form-input dep-field" data-idx="${i}" data-field="end" value="${escHtml(d.end||'')}" placeholder="Rua, Av..."></div>
-        <div class="form-group"><label class="form-label">Número</label>
-          <input type="text" class="form-input dep-field" data-idx="${i}" data-field="num" value="${escHtml(d.num||'')}" placeholder="00"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group w-2"><label class="form-label">Bairro</label>
-          <input type="text" class="form-input dep-field" data-idx="${i}" data-field="bairro" value="${escHtml(d.bairro||'')}" placeholder="Bairro"></div>
-        <div class="form-group"><label class="form-label">CEP</label>
-          <input type="tel" class="form-input dep-field" data-idx="${i}" data-field="cep" value="${escHtml(d.cep||'')}" placeholder="00000-000" maxlength="9" oninput="mascaraCEP(this)"></div>
-      </div>
-    </div>`;
+function renderDeps(){const c=document.getElementById('deps-container');c.innerHTML='';state.deps.forEach((_,i)=>renderDepItem(i));atualizarBtnAddDep()}
+function renderDepItem(i){
+  const cont=document.getElementById('deps-container');const d=state.deps[i]||{};const isFilled=d.nome&&d.nome.trim().length>0;
+  const div=document.createElement('div');div.className=`dep-item ${isFilled?'filled':''} ${i===0?'open':''}`;div.id='dep-'+i;
+  div.innerHTML=`<div class="dep-header" onclick="toggleDep(${i})"><div class="dep-header-title"><div class="dep-num">${i+1}</div>${isFilled?'<span>'+escHtml(d.nome)+'</span>':'Dependente '+(i+1)}</div><div style="display:flex;gap:10px;align-items:center"><span style="font-size:12px;color:var(--red);cursor:pointer" onclick="removerDep(event,${i})">✕</span><div class="dep-arrow">▼</div></div></div>
+  <div class="dep-body">
+    <div class="form-row"><div class="form-group w-full"><label class="form-label">Nome</label><input type="text" class="form-input dep-field" data-idx="${i}" data-field="nome" value="${escHtml(d.nome||'')}" placeholder="Nome do dependente"></div></div>
+    <div class="form-row"><div class="form-group w-2"><label class="form-label">CPF</label><input type="tel" class="form-input dep-field" data-idx="${i}" data-field="cpf" value="${escHtml(d.cpf||'')}" placeholder="000.000.000-00" maxlength="14" oninput="mascaraCPF(this)"></div><div class="form-group"><label class="form-label">Parentesco</label><select class="form-select dep-field" data-idx="${i}" data-field="parentesco">${['','Cônjuge','Filho(a)','Neto(a)','Pai','Mãe','Irmão/Irmã','Outro'].map(p=>`<option value="${p}" ${d.parentesco===p?'selected':''}>${p||'—'}</option>`).join('')}</select></div></div>
+    <div class="form-row"><div class="form-group w-2"><label class="form-label">Nascimento</label><input type="tel" class="form-input dep-field" data-idx="${i}" data-field="nasc" value="${escHtml(d.nasc||'')}" placeholder="DD/MM/AAAA" maxlength="10" oninput="mascaraData(this)"></div><div class="form-group"><label class="form-label">Idade</label><input type="number" class="form-input dep-field" data-idx="${i}" data-field="idade" value="${escHtml(d.idade||'')}" placeholder="00"></div><div class="form-group"><label class="form-label">Sexo</label><select class="form-select dep-field" data-idx="${i}" data-field="sexo"><option value="" ${!d.sexo?'selected':''}>—</option><option value="F" ${d.sexo==='F'?'selected':''}>F</option><option value="M" ${d.sexo==='M'?'selected':''}>M</option></select></div></div>
+    <div class="form-row"><div class="form-group w-3"><label class="form-label">Endereço</label><input type="text" class="form-input dep-field" data-idx="${i}" data-field="end" value="${escHtml(d.end||'')}" placeholder="Rua, Av..."></div><div class="form-group"><label class="form-label">Nº</label><input type="text" class="form-input dep-field" data-idx="${i}" data-field="num" value="${escHtml(d.num||'')}" placeholder="00"></div></div>
+    <div class="form-row"><div class="form-group w-2"><label class="form-label">Bairro</label><input type="text" class="form-input dep-field" data-idx="${i}" data-field="bairro" value="${escHtml(d.bairro||'')}" placeholder="Bairro"></div><div class="form-group"><label class="form-label">CEP</label><input type="tel" class="form-input dep-field" data-idx="${i}" data-field="cep" value="${escHtml(d.cep||'')}" placeholder="00000-000" maxlength="9" oninput="mascaraCEP(this)"></div></div>
+  </div>`;
   cont.appendChild(div);
 }
-function toggleDep(i) { coletarDepsDoDOM(); document.getElementById('dep-'+i)?.classList.toggle('open'); }
-function adicionarDep() {
-  if(state.deps.length >= MAX_DEPS) { showToast('Máximo de 4 dependentes','error'); return; }
-  coletarDepsDoDOM(); state.deps.push({}); renderDeps();
-  const el = document.getElementById('dep-'+(state.deps.length-1));
-  if(el) { el.classList.add('open'); setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),100); }
-}
-function removerDep(e,i) { e.stopPropagation(); coletarDepsDoDOM(); state.deps.splice(i,1); renderDeps(); }
-function coletarDepsDoDOM() {
-  document.querySelectorAll('.dep-field').forEach(el => {
-    const idx=parseInt(el.dataset.idx); const field=el.dataset.field;
-    if(!state.deps[idx]) state.deps[idx]={};
-    state.deps[idx][field]=el.value;
-  });
-}
-function coletarDeps() { coletarDepsDoDOM(); }
-function atualizarBtnAddDep() {
-  const btn = document.getElementById('btn-add-dep');
-  if(btn) btn.style.display = state.deps.length >= MAX_DEPS ? 'none' : 'flex';
-}
+function toggleDep(i){coletarDepsDoDOM();document.getElementById('dep-'+i)?.classList.toggle('open')}
+function adicionarDep(){if(state.deps.length>=MAX_DEPS){showToast('Máximo de 4 dependentes','error');return}coletarDepsDoDOM();state.deps.push({});renderDeps();const el=document.getElementById('dep-'+(state.deps.length-1));if(el){el.classList.add('open');setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),100)}}
+function removerDep(e,i){e.stopPropagation();coletarDepsDoDOM();state.deps.splice(i,1);renderDeps()}
+function coletarDepsDoDOM(){document.querySelectorAll('.dep-field').forEach(el=>{const idx=parseInt(el.dataset.idx);const field=el.dataset.field;if(!state.deps[idx])state.deps[idx]={};state.deps[idx][field]=el.value})}
+function coletarDeps(){coletarDepsDoDOM()}
+function atualizarBtnAddDep(){const btn=document.getElementById('btn-add-dep');if(btn)btn.style.display=state.deps.length>=MAX_DEPS?'none':'flex'}
 // ── FIM BLOCO ──
 
 // ═══ BLOCO: ASSINATURA DIGITAL ═══
-let assinCtx = null;
-let assinDrawing = false;
-let assinTouched = false;
-
-function initAssinatura() {
-  const canvas = document.getElementById('assin-canvas');
-  if(!canvas) return;
-  canvas.width = canvas.offsetWidth;
-  assinCtx = canvas.getContext('2d');
-  assinCtx.strokeStyle = '#0f2545';
-  assinCtx.lineWidth = 2.5;
-  assinCtx.lineCap = 'round';
-  assinCtx.lineJoin = 'round';
-
-  // Mouse
-  canvas.addEventListener('mousedown',  e => { assinDrawing=true; assinMoveInicio(e.offsetX, e.offsetY); });
-  canvas.addEventListener('mousemove',  e => { if(assinDrawing) assinMoveContinua(e.offsetX, e.offsetY); });
-  canvas.addEventListener('mouseup',    () => { assinDrawing=false; assinFinalizar(); });
-  canvas.addEventListener('mouseleave', () => { assinDrawing=false; });
-
-  // Touch
-  canvas.addEventListener('touchstart', e => {
-    e.preventDefault(); assinDrawing=true;
-    const r = canvas.getBoundingClientRect();
-    const t = e.touches[0];
-    assinMoveInicio(t.clientX - r.left, t.clientY - r.top);
-  }, {passive:false});
-  canvas.addEventListener('touchmove', e => {
-    e.preventDefault();
-    if(!assinDrawing) return;
-    const r = canvas.getBoundingClientRect();
-    const t = e.touches[0];
-    assinMoveContinua(t.clientX - r.left, t.clientY - r.top);
-  }, {passive:false});
-  canvas.addEventListener('touchend', () => { assinDrawing=false; assinFinalizar(); });
+let assinCtx=null,assinDrawing=false;
+function initAssinatura(){
+  const canvas=document.getElementById('assin-canvas');if(!canvas)return;
+  canvas.width=canvas.offsetWidth;assinCtx=canvas.getContext('2d');
+  assinCtx.strokeStyle='#0f2545';assinCtx.lineWidth=2.5;assinCtx.lineCap='round';assinCtx.lineJoin='round';
+  canvas.addEventListener('mousedown',e=>{assinDrawing=true;assinStart(e.offsetX,e.offsetY)});
+  canvas.addEventListener('mousemove',e=>{if(assinDrawing)assinDraw(e.offsetX,e.offsetY)});
+  canvas.addEventListener('mouseup',()=>{assinDrawing=false;assinEnd()});
+  canvas.addEventListener('mouseleave',()=>{assinDrawing=false});
+  canvas.addEventListener('touchstart',e=>{e.preventDefault();assinDrawing=true;const r=canvas.getBoundingClientRect();const t=e.touches[0];assinStart(t.clientX-r.left,t.clientY-r.top)},{passive:false});
+  canvas.addEventListener('touchmove',e=>{e.preventDefault();if(!assinDrawing)return;const r=canvas.getBoundingClientRect();const t=e.touches[0];assinDraw(t.clientX-r.left,t.clientY-r.top)},{passive:false});
+  canvas.addEventListener('touchend',()=>{assinDrawing=false;assinEnd()});
 }
-
-function assinMoveInicio(x, y) {
-  assinCtx.beginPath();
-  assinCtx.moveTo(x, y);
-  document.getElementById('assin-hint')?.classList.add('hidden');
-}
-function assinMoveContinua(x, y) {
-  assinCtx.lineTo(x, y);
-  assinCtx.stroke();
-  assinCtx.beginPath();
-  assinCtx.moveTo(x, y);
-}
-function assinFinalizar() {
-  assinTouched = true;
-  state.assinatura = document.getElementById('assin-canvas').toDataURL('image/png');
-  const status = document.getElementById('assin-status');
-  status.textContent = '✅ Assinatura registrada';
-  status.className = 'assin-status ok';
-}
-function limparAssinatura() {
-  const canvas = document.getElementById('assin-canvas');
-  if(!assinCtx) return;
-  assinCtx.clearRect(0, 0, canvas.width, canvas.height);
-  state.assinatura = '';
-  assinTouched = false;
-  document.getElementById('assin-hint')?.classList.remove('hidden');
-  const status = document.getElementById('assin-status');
-  status.textContent = '⬜ Aguardando assinatura';
-  status.className = 'assin-status pending';
-}
+function assinStart(x,y){assinCtx.beginPath();assinCtx.moveTo(x,y);document.getElementById('assin-hint')?.classList.add('hidden')}
+function assinDraw(x,y){assinCtx.lineTo(x,y);assinCtx.stroke();assinCtx.beginPath();assinCtx.moveTo(x,y)}
+function assinEnd(){state.assinatura=document.getElementById('assin-canvas').toDataURL('image/png');const s=document.getElementById('assin-status');s.textContent='✅ Assinatura registrada';s.className='assin-status ok'}
+function limparAssinatura(){const canvas=document.getElementById('assin-canvas');if(!assinCtx)return;assinCtx.clearRect(0,0,canvas.width,canvas.height);state.assinatura='';document.getElementById('assin-hint')?.classList.remove('hidden');const s=document.getElementById('assin-status');s.textContent='⬜ Aguardando assinatura';s.className='assin-status pending'}
 // ── FIM BLOCO ──
 
-// ═══ BLOCO: RENDER PREVIEW ═══
+// ═══ BLOCO: PREVIEW ═══
 function buildPreviewHTML(t, deps, vendedor, assinBase64) {
-  const endCompleto = [t.end, t.num, t.compl].filter(Boolean).join(', ');
-  const dataHoje = new Date().toLocaleDateString('pt-BR');
-  const depRows = deps.filter(d=>d.nome&&d.nome.trim()).map((d,i)=>{
-    const dEnd = [d.end,d.num].filter(Boolean).join(', ');
-    return `<tr><td>${i+1}</td><td>${escHtml(d.nome)}</td><td>${escHtml(d.cpf||'')}</td>
-      <td>${escHtml(d.parentesco||'')}</td><td>${escHtml(d.nasc||'')}</td>
-      <td>${escHtml(d.idade||'')}</td><td>${escHtml(d.sexo||'')}</td>
-      <td>${escHtml(dEnd)}</td><td>${escHtml(d.bairro||'')}</td><td>${escHtml(d.cep||'')}</td></tr>`;
-  }).join('');
-
-  const assinImgHtml = assinBase64
-    ? `<img src="${assinBase64}" class="preview-assin-img" alt="Assinatura">`
-    : `<div class="preview-assin-line"></div>`;
-
-  return `
-    <div class="preview-logo-header"><img src="logo.png" alt="DIM+ Saúde"></div>
-    <h1>Termo de Adesão ao Cartão DIM+ Saúde</h1>
-    <h2>Identificação das Partes</h2>
-    <div class="preview-conditions"><p><strong>CONTRATADA:</strong> Easy Doctor Representações Ltda (DIM+ SAÚDE), CNPJ: 35.803.784/0001-70, com sede em Osasco/SP.</p></div>
-    <h2>Contratante — Titular</h2>
-    <div class="preview-field-row">
-      <div class="preview-field"><span class="preview-field-label">Nome:</span><span class="preview-field-value">${escHtml(t.nome)}</span></div>
-      <div class="preview-field"><span class="preview-field-label">CPF:</span><span class="preview-field-value">${escHtml(t.cpf)}</span></div>
-      <div class="preview-field"><span class="preview-field-label">Idade:</span><span class="preview-field-value">${escHtml(t.idade)}</span></div>
-      <div class="preview-field"><span class="preview-field-label">Sexo:</span><span class="preview-field-value">${escHtml(t.sexo)}</span></div>
-      <div class="preview-field"><span class="preview-field-label">Nasc.:</span><span class="preview-field-value">${escHtml(t.nasc)}</span></div>
-    </div>
-    <div class="preview-field-row" style="margin-top:5px;">
-      <div class="preview-field"><span class="preview-field-label">Endereço:</span><span class="preview-field-value">${escHtml(endCompleto)}</span></div>
-      <div class="preview-field"><span class="preview-field-label">Bairro:</span><span class="preview-field-value">${escHtml(t.bairro)}</span></div>
-      <div class="preview-field"><span class="preview-field-label">Cidade:</span><span class="preview-field-value">${escHtml(t.cidade)}</span></div>
-      <div class="preview-field"><span class="preview-field-label">CEP:</span><span class="preview-field-value">${escHtml(t.cep)}</span></div>
-    </div>
-    <div class="preview-field-row" style="margin-top:5px;">
-      <div class="preview-field"><span class="preview-field-label">E-mail:</span><span class="preview-field-value">${escHtml(t.email)}</span></div>
-      <div class="preview-field"><span class="preview-field-label">Telefone:</span><span class="preview-field-value">${escHtml(t.tel)}</span></div>
-    </div>
-    <h2>Tipo de Assinatura</h2>
-    <div class="preview-field-row">
-      <div class="preview-field"><span class="preview-field-label">Plano:</span><span class="preview-field-value"><strong>${escHtml(t.plano)}</strong></span></div>
-      <div class="preview-field"><span class="preview-field-label">Pagamento:</span><span class="preview-field-value">${escHtml(t.pgto)}</span></div>
-      <div class="preview-field"><span class="preview-field-label">Vencimento:</span><span class="preview-field-value">Dia ${escHtml(t.venc)}</span></div>
-    </div>
-    ${depRows ? `<h2>Dependentes</h2>
-    <table class="preview-dep-table"><thead><tr>
-      <th>#</th><th>Nome</th><th>CPF</th><th>Parentesco</th>
-      <th>Nasc.</th><th>Idade</th><th>Sexo</th><th>Endereço</th><th>Bairro</th><th>CEP</th>
-    </tr></thead><tbody>${depRows}</tbody></table>` : ''}
-    <hr class="preview-sep">
-    <h2>Objeto</h2>
-    <div class="preview-conditions"><p>Este termo faz parte integrante do contrato completo firmado com o DIM+ SAÚDE e regula a adesão ao <strong>Cartão DIM+ SAÚDE</strong>, disponível no portal on-line DIM+ SAÚDE, que oferece benefícios como descontos em consultas médicas, exames, procedimentos e atendimentos terapêuticos, conforme as condições detalhadas pela Contratada.</p></div>
-    <h2>Condições Gerais</h2>
-    <div class="preview-conditions">
-      <p><strong>Validade e Renovação:</strong> A assinatura é válida por 12 meses, com renovação automática.</p>
-      <p><strong>Uso e Benefícios:</strong> Os serviços são acessados mediante apresentação do cartão (físico ou virtual) e documento oficial com foto.</p>
-      <p><strong>Funcionamento:</strong> O cartão não é um plano de saúde, sendo apenas intermediador de descontos e benefícios.</p>
-      <p><strong>Inclusão de Dependentes:</strong> Permitida no ato da adesão ou até 7 dias após, mediante solicitação formal.</p>
-    </div>
-    <h2>Condições Financeiras</h2>
-    <div class="preview-conditions">
-      <p>Pagamento inicial inclui taxa de adesão e primeira parcela. Mensalidades subsequentes pagas conforme data escolhida (10, 20 ou 30). Reajustes anuais conforme IGPM/FGV, com aviso prévio de 30 dias.</p>
-    </div>
-    <h2>Cancelamento</h2>
-    <div class="preview-conditions">
-      <p>O titular poderá exercer o direito de arrependimento em até 07 dias corridos, com reembolso integral, desde que nenhum benefício tenha sido utilizado. Após esse prazo, cancelamento mediante aviso prévio de 30 dias, com multa rescisória de 30% das parcelas vincendas.</p>
-    </div>
-    <h2>Disposições Finais</h2>
-    <div class="preview-conditions">
-      <p><em>Este termo substitui o contrato completo na posse do Contratante.</em> A Contratada não se responsabiliza por informações incorretas fornecidas. Foro de Osasco/SP.</p>
-    </div>
-    <div class="preview-assinatura">
-      <div class="preview-assin-block">
-        ${assinImgHtml}
-        <div class="preview-assin-label">Assinatura do Contratante</div>
-        <div style="font-size:11px;color:#444;margin-top:3px;">${escHtml(t.nome)} — CPF: ${escHtml(t.cpf)}</div>
-        <div style="font-size:11px;color:#444;">Data: ${dataHoje}</div>
-      </div>
-      <div class="preview-assin-block">
-        <div class="preview-assin-line"></div>
-        <div class="preview-assin-label">Vendedor(a) / Contratada</div>
-        <div style="font-size:11px;color:#444;margin-top:3px;">${escHtml(vendedor)}</div>
-        <div style="font-size:11px;color:#444;">Data: ${dataHoje}</div>
-      </div>
-    </div>`;
+  const endC=[t.end,t.num,t.compl].filter(Boolean).join(', ');
+  const dataHoje=new Date().toLocaleDateString('pt-BR');
+  const depRows=deps.filter(d=>d.nome&&d.nome.trim()).map((d,i)=>`<tr><td>${i+1}</td><td>${escHtml(d.nome)}</td><td>${escHtml(d.cpf||'')}</td><td>${escHtml(d.parentesco||'')}</td><td>${escHtml(d.nasc||'')}</td><td>${escHtml(d.sexo||'')}</td></tr>`).join('');
+  const assinHtml=assinBase64?`<img src="${assinBase64}" class="preview-assin-img" alt="Assinatura">`:`<div class="preview-assin-line"></div>`;
+  return `<div class="preview-logo-header"><img src="logo.png" alt="DIM+ Saúde"></div>
+  <h1>Termo de Adesão ao Cartão DIM+ Saúde</h1>
+  <h2>Contratante — Titular</h2>
+  <div class="preview-field-row"><div class="preview-field"><span class="preview-field-label">Nome:</span><span class="preview-field-value">${escHtml(t.nome)}</span></div><div class="preview-field"><span class="preview-field-label">CPF:</span><span class="preview-field-value">${escHtml(t.cpf)}</span></div><div class="preview-field"><span class="preview-field-label">Nasc.:</span><span class="preview-field-value">${escHtml(t.nasc)}</span></div><div class="preview-field"><span class="preview-field-label">Sexo:</span><span class="preview-field-value">${escHtml(t.sexo)}</span></div></div>
+  <div class="preview-field-row" style="margin-top:4px"><div class="preview-field"><span class="preview-field-label">Endereço:</span><span class="preview-field-value">${escHtml(endC)}</span></div><div class="preview-field"><span class="preview-field-label">Bairro:</span><span class="preview-field-value">${escHtml(t.bairro)}</span></div><div class="preview-field"><span class="preview-field-label">Cidade:</span><span class="preview-field-value">${escHtml(t.cidade)}</span></div><div class="preview-field"><span class="preview-field-label">CEP:</span><span class="preview-field-value">${escHtml(t.cep)}</span></div></div>
+  <div class="preview-field-row" style="margin-top:4px"><div class="preview-field"><span class="preview-field-label">Tel.:</span><span class="preview-field-value">${escHtml(t.tel)}</span></div><div class="preview-field"><span class="preview-field-label">E-mail:</span><span class="preview-field-value">${escHtml(t.email)}</span></div></div>
+  <h2>Assinatura</h2>
+  <div class="preview-field-row"><div class="preview-field"><span class="preview-field-label">Plano:</span><span class="preview-field-value"><strong>${escHtml(t.plano)}</strong></span></div><div class="preview-field"><span class="preview-field-label">Pgto.:</span><span class="preview-field-value">${escHtml(t.pgto)}</span></div><div class="preview-field"><span class="preview-field-label">Venc.:</span><span class="preview-field-value">Dia ${escHtml(t.venc)}</span></div></div>
+  ${depRows?`<h2>Dependentes</h2><table class="preview-dep-table"><thead><tr><th>#</th><th>Nome</th><th>CPF</th><th>Parentesco</th><th>Nasc.</th><th>Sexo</th></tr></thead><tbody>${depRows}</tbody></table>`:''}
+  <hr class="preview-sep">
+  <div class="preview-conditions"><p><strong>CONTRATADA:</strong> Easy Doctor Representações Ltda (DIM+ SAÚDE), CNPJ: 35.803.784/0001-70, Osasco/SP.</p><p>O cartão não é um plano de saúde, sendo intermediador de descontos e benefícios. Validade: 12 meses, renovação automática. Cancelamento: aviso prévio de 30 dias, multa rescisória de 30% das parcelas vincendas. Foro: Osasco/SP.</p></div>
+  <div class="preview-assinatura"><div class="preview-assin-block">${assinHtml}<div class="preview-assin-label">${escHtml(t.nome)}</div><div style="font-size:9px;color:#666">CPF: ${escHtml(t.cpf)} — ${dataHoje}</div></div><div class="preview-assin-block"><div class="preview-assin-line"></div><div class="preview-assin-label">Vendedor(a): ${escHtml(vendedor)}</div><div style="font-size:9px;color:#666">DIM+ Saúde — ${dataHoje}</div></div></div>`;
 }
-
-function renderPreview() {
-  const t = getValorTitular();
-  document.getElementById('preview-content').innerHTML = buildPreviewHTML(t, state.deps, state.vendedor, state.assinatura);
-}
+function renderPreview(){const t=getValorTitular();document.getElementById('preview-content').innerHTML=buildPreviewHTML(t,state.deps,state.session?.nome||'',state.assinatura)}
 // ── FIM BLOCO ──
 
-// ═══ BLOCO: SALVAR → GOOGLE SHEETS ═══
+// ═══ BLOCO: SALVAR CONTRATO ═══
 async function salvarContrato() {
-  const t = getValorTitular();
-  const payload = {
-    action:      'save',
-    timestamp:   new Date().toISOString(),
-    vendedor:    state.vendedor,
-    nome:        t.nome,
-    cpf:         t.cpf,
-    idade:       t.idade,
-    sexo:        t.sexo,
-    nascimento:  t.nasc,
-    endereco:    [t.end,t.num,t.compl].filter(Boolean).join(', '),
-    bairro:      t.bairro,
-    cidade:      t.cidade,
-    cep:         t.cep,
-    email:       t.email,
-    telefone:    t.tel,
-    plano:       t.plano,
-    pagamento:   t.pgto,
-    vencimento:  t.venc,
-    qtdDeps:     state.deps.filter(d=>d.nome&&d.nome.trim()).length,
-    dependentes: JSON.stringify(state.deps.filter(d=>d.nome&&d.nome.trim())),
-    assinatura:  state.assinatura ? 'SIM' : 'NÃO'
-  };
-  mostrarLoading(true, 'Salvando contrato...');
+  const t=getValorTitular();
+  const payload={action:'save',timestamp:new Date().toISOString(),vendedor:state.session?.nome||'',email_vendedor:state.session?.email||'',nome:t.nome,cpf:t.cpf,idade:t.idade,sexo:t.sexo,nascimento:t.nasc,endereco:[t.end,t.num,t.compl].filter(Boolean).join(', '),bairro:t.bairro,cidade:t.cidade,cep:t.cep,email:t.email,telefone:t.tel,plano:t.plano,pagamento:t.pgto,vencimento:t.venc,status:'Ativo',qtdDeps:state.deps.filter(d=>d.nome&&d.nome.trim()).length,dependentes:JSON.stringify(state.deps.filter(d=>d.nome&&d.nome.trim())),assinatura:state.assinatura?'SIM':'NÃO'};
+  mostrarLoading(true,'Salvando...');
   try {
-    await fetch(APPS_SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+    await apiFetch(payload);
     mostrarLoading(false);
-    mostrarSucesso(t);
-  } catch(err) {
-    mostrarLoading(false);
-    showToast('Erro ao salvar. Verifique conexão.','error');
-  }
-}
-function mostrarSucesso(t) {
-  document.getElementById('success-info').innerHTML = `
-    <strong>Titular:</strong> ${escHtml(t.nome)}<br>
-    <strong>CPF:</strong> ${escHtml(t.cpf)}<br>
-    <strong>Plano:</strong> ${escHtml(t.plano)}<br>
-    <strong>Pagamento:</strong> ${escHtml(t.pgto)} — Dia ${escHtml(t.venc)}<br>
-    <strong>Vendedor(a):</strong> ${escHtml(state.vendedor)}<br>
-    <strong>Data:</strong> ${new Date().toLocaleDateString('pt-BR')}`;
-  mostrarScreen('success');
-  atualizarProgress('');
+    state.contratos=[];// forçar reload
+    document.getElementById('success-info').innerHTML=`<strong>Titular:</strong> ${escHtml(t.nome)}<br><strong>Plano:</strong> ${escHtml(t.plano)}<br><strong>Pgto.:</strong> ${escHtml(t.pgto)} · Dia ${escHtml(t.venc)}<br><strong>Vendedor(a):</strong> ${escHtml(state.session?.nome||'')}`;
+    mostrarScreen('success');atualizarProgress('');
+  } catch(e){mostrarLoading(false);showToast('Erro ao salvar. Tente novamente.','error')}
 }
 // ── FIM BLOCO ──
 
-// ═══ BLOCO: GESTÃO ═══
-async function irGestao() {
-  mostrarScreen('gestao');
-  atualizarProgress('');
-  await carregarContratos();
-}
-
+// ═══ BLOCO: CARREGAR CONTRATOS ═══
 async function carregarContratos() {
-  document.getElementById('gestao-loading').style.display = 'block';
-  document.getElementById('gestao-table-area').style.display = 'none';
+  document.getElementById('gestao-loading').style.display='block';
+  document.getElementById('gestao-table-area').style.display='none';
   try {
-    const url = APPS_SCRIPT_URL + '?action=list';
-    const res = await fetch(url);
-    const data = await res.json();
-    state.contratos = data.contratos || [];
-  } catch(e) {
-    state.contratos = [];
-    showToast('Erro ao carregar contratos','error');
-  }
-  document.getElementById('gestao-loading').style.display = 'none';
-  document.getElementById('gestao-table-area').style.display = 'block';
-  renderStats();
-  renderTabela();
+    const params={action:'list'};
+    if(state.session?.papel==='vendedor') params.vendedor=state.session.nome;
+    const data=await apiGet(params);
+    state.contratos=data.contratos||[];
+  } catch(e){state.contratos=[];showToast('Erro ao carregar contratos','error')}
+  document.getElementById('gestao-loading').style.display='none';
+  document.getElementById('gestao-table-area').style.display='block';
+  // Filtros de vendedor só para gestor
+  if(state.session?.papel==='gestor') renderFiltrosVendedor();
+  renderTabelaGestao();
 }
 
-function renderStats() {
-  const todos = state.contratos;
-  const mesAtual = new Date().toISOString().slice(0,7);
-  const doMes = todos.filter(c => (c.timestamp||'').slice(0,7) === mesAtual);
-  const totalDeps = todos.reduce((acc,c) => acc + (parseInt(c.qtdDeps)||0), 0);
-  document.getElementById('stat-total').textContent = todos.length;
-  document.getElementById('stat-mes').textContent   = doMes.length;
-  document.getElementById('stat-deps').textContent  = totalDeps;
+function renderFiltrosVendedor() {
+  const vendedores=[...new Set(state.contratos.map(c=>c.vendedor).filter(Boolean))];
+  if(vendedores.length<=1){document.getElementById('vendedor-filters').style.display='none';return}
+  document.getElementById('vendedor-filters').style.display='block';
+  const btns=document.getElementById('vendedor-filter-btns');
+  btns.innerHTML=`<button class="filter-btn ${state.filtroVendedor==='todos'?'active':''}" onclick="filtrarVendedorGestao('todos',this)">Todos</button>`+
+    vendedores.map(v=>`<button class="filter-btn ${state.filtroVendedor===v?'active':''}" onclick="filtrarVendedorGestao('${v.replace(/'/g,"\\'")}',this)">${escHtml(v)}</button>`).join('');
 }
 
-function filtrarVendedor(v, btn) {
-  state.filtroVendedor = v;
-  document.querySelectorAll('.gestao-filter').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderTabela();
-}
+function filtrarGestao(f,btn){state.filtroStatus=f;document.querySelectorAll('#gestao-filters .filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderTabelaGestao()}
+function filtrarVendedorGestao(v,btn){state.filtroVendedor=v;document.querySelectorAll('#vendedor-filter-btns .filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderTabelaGestao()}
 
-function renderTabela() {
-  const busca = (document.getElementById('gestao-search')?.value||'').toLowerCase();
-  let lista = state.contratos;
-  if(state.filtroVendedor !== 'todos') lista = lista.filter(c => c.vendedor === state.filtroVendedor);
-  if(busca) lista = lista.filter(c =>
-    (c.nome||'').toLowerCase().includes(busca) ||
-    (c.cpf||'').toLowerCase().includes(busca)
-  );
-
-  const area = document.getElementById('gestao-table-area');
-  if(!lista.length) {
-    area.innerHTML = `<div class="gestao-empty"><div class="gestao-empty-icon">📭</div>Nenhum contrato encontrado.</div>`;
-    return;
-  }
-
-  const rows = lista.map((c,i) => {
-    const badgeClass = (c.plano||'').includes('PLUS') ? 'badge-plus' : 'badge-basico';
-    const dataF = c.timestamp ? new Date(c.timestamp).toLocaleDateString('pt-BR') : '—';
+function renderTabelaGestao() {
+  const busca=(document.getElementById('gestao-search')?.value||'').toLowerCase();
+  let lista=state.contratos;
+  if(state.filtroStatus!=='todos') lista=lista.filter(c=>(c.status||'Ativo')===state.filtroStatus);
+  if(state.filtroVendedor!=='todos') lista=lista.filter(c=>c.vendedor===state.filtroVendedor);
+  if(busca) lista=lista.filter(c=>(c.nome||'').toLowerCase().includes(busca)||(c.cpf||'').includes(busca));
+  const area=document.getElementById('gestao-table-area');
+  if(!lista.length){area.innerHTML=`<div class="empty-state"><div class="empty-icon">📭</div>Nenhum contrato encontrado.</div>`;return}
+  const statusMap={'Ativo':'badge-green','Cancelado':'badge-red','Inadimplente':'badge-orange','Pendente':'badge-blue'};
+  const rows=lista.map((c,i)=>{
+    const dataF=c.timestamp?new Date(c.timestamp).toLocaleDateString('pt-BR'):'—';
+    const st=c.status||'Ativo';
+    const planoClass=(c.plano||'').includes('PLUS')?'badge-gold':'badge-blue';
     return `<tr>
       <td>${dataF}</td>
       <td><strong>${escHtml(c.nome||'')}</strong><br><span style="font-size:11px;color:var(--gray600)">${escHtml(c.cpf||'')}</span></td>
-      <td><span class="badge-plano ${badgeClass}">${escHtml(c.plano||'')}</span></td>
-      <td>${escHtml(c.pagamento||'')} · Dia ${escHtml(c.vencimento||'')}</td>
-      <td><span class="badge-vendedor">${escHtml(c.vendedor||'')}</span></td>
-      <td style="text-align:center;">${escHtml(String(c.qtdDeps||0))}</td>
-      <td><button class="btn-ver" onclick="verContrato(${i})">Ver</button></td>
+      <td><span class="badge ${planoClass}">${escHtml((c.plano||'').replace('DIM+ ',''))}</span></td>
+      <td><span class="badge ${statusMap[st]||'badge-gray'}">${st}</span></td>
+      <td style="font-size:12px">${escHtml(c.vendedor||'')}</td>
+      <td style="text-align:right;display:flex;gap:6px;justify-content:flex-end">
+        ${state.session?.papel==='gestor'?`<select style="font-size:11px;padding:3px 6px;border:1px solid var(--gray300);border-radius:4px" onchange="alterarStatus(${i},this.value)"><option ${st==='Ativo'?'selected':''}>Ativo</option><option ${st==='Pendente'?'selected':''}>Pendente</option><option ${st==='Cancelado'?'selected':''}>Cancelado</option><option ${st==='Inadimplente'?'selected':''}>Inadimplente</option></select>`:''}
+        <button class="btn-ver" onclick="verContrato(${i})" style="padding:4px 10px;background:var(--navy);color:white;border:none;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap">Ver</button>
+      </td>
     </tr>`;
   }).join('');
+  area.innerHTML=`<table class="data-table"><thead><tr><th>Data</th><th>Titular</th><th>Plano</th><th>Status</th><th>Vendedor</th><th></th></tr></thead><tbody>${rows}</tbody></table>`;
+}
 
-  area.innerHTML = `
-    <table class="gestao-table">
-      <thead><tr>
-        <th>Data</th><th>Titular</th><th>Plano</th>
-        <th>Pagamento</th><th>Vendedor(a)</th><th>Deps.</th><th></th>
-      </tr></thead>
-      <tbody>${rows}</tbody>
-    </table>`;
+async function alterarStatus(idx, novoStatus) {
+  const busca=(document.getElementById('gestao-search')?.value||'').toLowerCase();
+  let lista=state.contratos;
+  if(state.filtroStatus!=='todos') lista=lista.filter(c=>(c.status||'Ativo')===state.filtroStatus);
+  if(state.filtroVendedor!=='todos') lista=lista.filter(c=>c.vendedor===state.filtroVendedor);
+  if(busca) lista=lista.filter(c=>(c.nome||'').toLowerCase().includes(busca)||(c.cpf||'').includes(busca));
+  const contrato=lista[idx];
+  if(!contrato) return;
+  try {
+    await apiFetch({action:'updateStatus',cpf:contrato.cpf,timestamp:contrato.timestamp,status:novoStatus});
+    contrato.status=novoStatus;
+    // Atualizar no array principal também
+    const orig=state.contratos.find(c=>c.cpf===contrato.cpf&&c.timestamp===contrato.timestamp);
+    if(orig) orig.status=novoStatus;
+    showToast('Status atualizado ✅','success');
+  } catch(e){showToast('Erro ao atualizar status','error')}
 }
 
 function verContrato(idx) {
-  const busca = (document.getElementById('gestao-search')?.value||'').toLowerCase();
-  let lista = state.contratos;
-  if(state.filtroVendedor !== 'todos') lista = lista.filter(c => c.vendedor === state.filtroVendedor);
-  if(busca) lista = lista.filter(c =>
-    (c.nome||'').toLowerCase().includes(busca) ||
-    (c.cpf||'').toLowerCase().includes(busca)
-  );
-  const c = lista[idx];
-  if(!c) return;
-
-  let deps = [];
-  try { deps = JSON.parse(c.dependentes||'[]'); } catch(_) {}
-
-  const t = {
-    nome: c.nome||'', cpf: c.cpf||'', idade: c.idade||'', sexo: c.sexo||'',
-    nasc: c.nascimento||'', end: c.endereco||'', num:'', compl:'',
-    bairro: c.bairro||'', cidade: c.cidade||'', cep: c.cep||'',
-    email: c.email||'', tel: c.telefone||'',
-    plano: c.plano||'', pgto: c.pagamento||'', venc: c.vencimento||''
-  };
-  document.getElementById('modal-preview-content').innerHTML =
-    `<div class="preview-doc">${buildPreviewHTML(t, deps, c.vendedor||'', '')}</div>`;
+  const busca=(document.getElementById('gestao-search')?.value||'').toLowerCase();
+  let lista=state.contratos;
+  if(state.filtroStatus!=='todos') lista=lista.filter(c=>(c.status||'Ativo')===state.filtroStatus);
+  if(state.filtroVendedor!=='todos') lista=lista.filter(c=>c.vendedor===state.filtroVendedor);
+  if(busca) lista=lista.filter(c=>(c.nome||'').toLowerCase().includes(busca)||(c.cpf||'').includes(busca));
+  const c=lista[idx]; if(!c) return;
+  let deps=[];try{deps=JSON.parse(c.dependentes||'[]')}catch(_){}
+  const t={nome:c.nome||'',cpf:c.cpf||'',idade:c.idade||'',sexo:c.sexo||'',nasc:c.nascimento||'',end:c.endereco||'',num:'',compl:'',bairro:c.bairro||'',cidade:c.cidade||'',cep:c.cep||'',email:c.email||'',tel:c.telefone||'',plano:c.plano||'',pgto:c.pagamento||'',venc:c.vencimento||''};
+  document.getElementById('modal-preview-content').innerHTML=`<div class="preview-doc">${buildPreviewHTML(t,deps,c.vendedor||'','')}</div>`;
   document.getElementById('modal-contrato').classList.add('show');
 }
-function fecharModal() {
-  document.getElementById('modal-contrato').classList.remove('show');
+// ── FIM BLOCO ──
+
+// ═══ BLOCO: PAINEL ═══
+function setPeriodo(p,btn){state.periodo=p;document.querySelectorAll('.period-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderPainel()}
+
+function filtrarPorPeriodo(contratos) {
+  const now=new Date();
+  return contratos.filter(c=>{
+    if(!c.timestamp) return false;
+    const d=new Date(c.timestamp);
+    if(state.periodo==='mes') return d.getFullYear()===now.getFullYear()&&d.getMonth()===now.getMonth();
+    if(state.periodo==='trim'){const trim=Math.floor(now.getMonth()/3);return d.getFullYear()===now.getFullYear()&&Math.floor(d.getMonth()/3)===trim}
+    if(state.periodo==='ano') return d.getFullYear()===now.getFullYear();
+    return true;
+  });
+}
+
+function ticketDoPlano(plano){return(plano||'').includes('PLUS')?TICKET_PLUS:TICKET_BASICO}
+
+function renderPainel() {
+  const isGestor=state.session?.papel==='gestor';
+  let todos=state.contratos;
+  if(!isGestor) todos=todos.filter(c=>c.vendedor===state.session?.nome);
+  const lista=filtrarPorPeriodo(todos);
+
+  const total=lista.length;
+  const mrr=lista.reduce((acc,c)=>acc+ticketDoPlano(c.plano),0);
+  const deps=lista.reduce((acc,c)=>acc+(parseInt(c.qtdDeps)||0),0);
+  const ticket=total>0?(mrr/total).toFixed(2):0;
+
+  document.getElementById('st-total').textContent=total;
+  document.getElementById('st-total-sub').textContent=`de ${todos.length} total`;
+  document.getElementById('st-mrr').textContent='R$'+mrr.toFixed(0);
+  document.getElementById('st-deps').textContent=deps;
+  document.getElementById('st-ticket').textContent='R$'+ticket;
+
+  // Ranking vendedores (só gestor)
+  const wrapV=document.getElementById('wrap-vendedores');
+  if(isGestor){
+    wrapV.style.display='block';
+    const byV={};lista.forEach(c=>{const v=c.vendedor||'?';byV[v]=(byV[v]||0)+1});
+    const sorted=Object.entries(byV).sort((a,b)=>b[1]-a[1]);
+    const max=sorted[0]?.[1]||1;
+    document.getElementById('chart-vendedores').innerHTML=sorted.map(([v,n])=>`
+      <div class="bar-row">
+        <div class="bar-name">${escHtml(v)}</div>
+        <div class="bar-track"><div class="bar-fill" style="width:${Math.round(n/max*100)}%"></div></div>
+        <div class="bar-val">${n}</div>
+      </div>`).join('');
+  } else { wrapV.style.display='none'; }
+
+  // Evolução mensal (6 meses)
+  renderEvolucao(todos);
+
+  // Planos
+  const byP={};todos.forEach(c=>{const p=(c.plano||'BÁSICO').replace('DIM+ ','');byP[p]=(byP[p]||0)+1});
+  const sortedP=Object.entries(byP).sort((a,b)=>b[1]-a[1]);const maxP=sortedP[0]?.[1]||1;
+  document.getElementById('chart-planos').innerHTML=sortedP.map(([p,n])=>`
+    <div class="bar-row">
+      <div class="bar-name">${escHtml(p)}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${Math.round(n/maxP*100)}%;background:var(--blue)"></div></div>
+      <div class="bar-val">${n}</div>
+    </div>`).join('');
+}
+
+function renderEvolucao(contratos) {
+  const meses=[];const now=new Date();
+  for(let i=5;i>=0;i--){const d=new Date(now.getFullYear(),now.getMonth()-i,1);meses.push({label:d.toLocaleDateString('pt-BR',{month:'short',year:'2-digit'}),ano:d.getFullYear(),mes:d.getMonth(),count:0})}
+  contratos.forEach(c=>{if(!c.timestamp)return;const d=new Date(c.timestamp);meses.forEach(m=>{if(d.getFullYear()===m.ano&&d.getMonth()===m.mes)m.count++})});
+  const max=Math.max(...meses.map(m=>m.count),1);
+  const w=300,h=120,pad=24,step=(w-pad*2)/5;
+  const pts=meses.map((m,i)=>({x:pad+i*step,y:h-pad-(m.count/max)*(h-pad*2),c:m.count,l:m.label}));
+  const path=pts.map((p,i)=>(i===0?`M${p.x},${p.y}`:`L${p.x},${p.y}`)).join(' ');
+  const area=pts.map((p,i)=>(i===0?`M${p.x},${h-pad}`:``) + (i===0?`L${p.x},${p.y}`:`L${p.x},${p.y}`) ).join('') + `L${pts[pts.length-1].x},${h-pad}Z`;
+  const areaPath='M'+pts[0].x+','+(h-pad)+' '+pts.map(p=>`L${p.x},${p.y}`).join(' ')+` L${pts[pts.length-1].x},${h-pad}Z`;
+  document.getElementById('chart-evolucao').innerHTML=`
+    <svg viewBox="0 0 ${w} ${h}" class="line-chart-svg">
+      <defs><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#D4720A" stop-opacity=".3"/><stop offset="100%" stop-color="#D4720A" stop-opacity="0"/></linearGradient></defs>
+      <path d="${areaPath}" fill="url(#lg)"/>
+      <path d="${path}" fill="none" stroke="#D4720A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      ${pts.map(p=>`<circle cx="${p.x}" cy="${p.y}" r="4" fill="#D4720A"/><text x="${p.x}" y="${p.y-8}" text-anchor="middle" font-size="10" fill="#495057" font-weight="600">${p.c}</text><text x="${p.x}" y="${h-6}" text-anchor="middle" font-size="9" fill="#adb5bd">${p.l}</text>`).join('')}
+    </svg>`;
+}
+// ── FIM BLOCO ──
+
+// ═══ BLOCO: USUÁRIOS ═══
+async function carregarUsuarios() {
+  document.getElementById('usuarios-loading').style.display='block';
+  document.getElementById('usuarios-lista').style.display='none';
+  try {
+    const data=await apiGet({action:'listUsers'});
+    state.usuarios=data.usuarios||[];
+  } catch(e){state.usuarios=[];showToast('Erro ao carregar usuários','error')}
+  document.getElementById('usuarios-loading').style.display='none';
+  document.getElementById('usuarios-lista').style.display='block';
+  renderUsuarios();
+}
+
+function renderUsuarios() {
+  const lista=document.getElementById('usuarios-lista');
+  if(!state.usuarios.length){lista.innerHTML=`<div class="empty-state"><div class="empty-icon">👤</div>Nenhum usuário cadastrado.</div>`;return}
+  lista.innerHTML=state.usuarios.map((u,i)=>{
+    const initials=(u.nome||'?').split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();
+    const ativo=String(u.ativo)!=='false';
+    return `<div class="user-card ${!ativo?'inactive-overlay':''}">
+      <div class="user-avatar av-${u.papel||'vendedor'}">${initials}</div>
+      <div class="user-info">
+        <div class="user-name">${escHtml(u.nome||'')}</div>
+        <div class="user-email">${escHtml(u.email||'')}</div>
+        <div class="user-meta">
+          <span class="badge ${u.papel==='gestor'?'badge-gold':'badge-green'}">${u.papel==='gestor'?'Gestor':'Vendedor'}</span>
+          <span class="badge ${ativo?'badge-green':'badge-gray'}">${ativo?'Ativo':'Inativo'}</span>
+        </div>
+      </div>
+      <div class="user-actions">
+        <button class="btn-icon" onclick="editarUsuario(${i})" title="Editar">✏️</button>
+        <button class="btn-icon danger" onclick="toggleAtivoUsuario(${i})" title="${ativo?'Desativar':'Ativar'}">${ativo?'🔒':'🔓'}</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function abrirModalNovoUsuario() {
+  state.editandoUsuario=null;
+  document.getElementById('modal-user-title').textContent='👤 Novo Usuário';
+  document.getElementById('u-nome').value='';
+  document.getElementById('u-email').value='';
+  document.getElementById('u-papel').value='vendedor';
+  document.getElementById('u-ativo').value='true';
+  document.getElementById('u-senha').value='';
+  document.getElementById('u-senha-row').style.display='block';
+  document.getElementById('u-reset-row').style.display='none';
+  document.getElementById('modal-usuario').classList.add('show');
+}
+
+function editarUsuario(i) {
+  const u=state.usuarios[i]; if(!u) return;
+  state.editandoUsuario=i;
+  document.getElementById('modal-user-title').textContent='✏️ Editar Usuário';
+  document.getElementById('u-nome').value=u.nome||'';
+  document.getElementById('u-email').value=u.email||'';
+  document.getElementById('u-papel').value=u.papel||'vendedor';
+  document.getElementById('u-ativo').value=String(u.ativo)!=='false'?'true':'false';
+  document.getElementById('u-senha-row').style.display='none';
+  document.getElementById('u-reset-row').style.display='block';
+  document.getElementById('u-reset-senha').checked=false;
+  document.getElementById('u-nova-senha-row').style.display='none';
+  document.getElementById('modal-usuario').classList.add('show');
+}
+
+document.addEventListener('change',function(e){if(e.target.id==='u-reset-senha'){document.getElementById('u-nova-senha-row').style.display=e.target.checked?'block':'none'}});
+
+async function salvarUsuario() {
+  const nome=document.getElementById('u-nome').value.trim();
+  const email=document.getElementById('u-email').value.trim();
+  const papel=document.getElementById('u-papel').value;
+  const ativo=document.getElementById('u-ativo').value==='true';
+  if(!nome||!email){showToast('Nome e e-mail são obrigatórios','error');return}
+  const payload={action:'saveUser',nome,email,papel,ativo};
+  if(state.editandoUsuario===null){
+    const senha=document.getElementById('u-senha').value;
+    if(!senha||senha.length<6){showToast('Senha mínima: 6 caracteres','error');return}
+    payload.senha=senha;
+  } else {
+    const reset=document.getElementById('u-reset-senha').checked;
+    if(reset){
+      const ns=document.getElementById('u-nova-senha').value;
+      if(!ns||ns.length<6){showToast('Nova senha mínima: 6 caracteres','error');return}
+      payload.senha=ns;
+    }
+    payload.emailOriginal=state.usuarios[state.editandoUsuario].email;
+  }
+  mostrarLoading(true,'Salvando...');
+  try {
+    const data=await apiFetch(payload);
+    mostrarLoading(false);
+    if(data.ok){fecharModal('modal-usuario');await carregarUsuarios();showToast('Usuário salvo ✅','success')}
+    else showToast(data.msg||'Erro ao salvar','error');
+  } catch(e){mostrarLoading(false);showToast('Erro de conexão','error')}
+}
+
+async function toggleAtivoUsuario(i) {
+  const u=state.usuarios[i]; if(!u) return;
+  const novoAtivo=String(u.ativo)==='false';
+  mostrarLoading(true,'Atualizando...');
+  try {
+    await apiFetch({action:'saveUser',emailOriginal:u.email,email:u.email,nome:u.nome,papel:u.papel,ativo:novoAtivo});
+    mostrarLoading(false);
+    u.ativo=novoAtivo;renderUsuarios();
+    showToast(`Usuário ${novoAtivo?'ativado':'desativado'} ✅`,'success');
+  } catch(e){mostrarLoading(false);showToast('Erro','error')}
 }
 // ── FIM BLOCO ──
 
 // ═══ BLOCO: UTILITÁRIOS ═══
-function mostrarLoading(show, txt) {
-  document.getElementById('loading').classList.toggle('show', show);
-  if(txt) document.getElementById('loading-text').textContent = txt;
-}
-function showToast(msg, tipo) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.className = 'toast '+(tipo||'');
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3500);
-}
-function escHtml(str) {
-  if(!str) return '';
-  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-function novoContrato() {
-  state.deps = []; state.assinatura = '';
-  ['t-nome','t-cpf','t-idade','t-nasc','t-end','t-num','t-compl','t-bairro','t-cidade','t-cep','t-email','t-tel']
-    .forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
-  document.getElementById('t-sexo').value='';
-  document.querySelectorAll('input[type="radio"]').forEach(r=>r.checked=false);
-  document.querySelectorAll('.radio-card').forEach(c=>c.classList.remove('selected'));
-  mostrarScreen('step1'); atualizarProgress('step1');
-}
+function mostrarLoading(show,txt){document.getElementById('loading').classList.toggle('show',show);if(txt)document.getElementById('loading-text').textContent=txt}
+function showToast(msg,tipo){const t=document.getElementById('toast');t.textContent=msg;t.className='toast '+(tipo||'');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3500)}
+function escHtml(str){if(!str)return '';return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function fecharModal(id){document.getElementById(id).classList.remove('show')}
+function novoContrato(){state.deps=[];state.assinatura='';['t-nome','t-cpf','t-idade','t-nasc','t-end','t-num','t-compl','t-bairro','t-cidade','t-cep','t-email','t-tel'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''});document.getElementById('t-sexo').value='';document.querySelectorAll('input[type="radio"]').forEach(r=>r.checked=false);document.querySelectorAll('.radio-card').forEach(c=>c.classList.remove('selected'))}
+function irNovoContrato(){novoContrato();mostrarScreen('step1');atualizarProgress('step1')}
 // ── FIM BLOCO ──
 
 // ═══ BLOCO: INIT ═══
 (function init() {
-  const saved = localStorage.getItem('dimplus_vendedor');
-  if(saved && ['Rayane Godoy','Sandra'].includes(saved)) {
-    state.vendedor = saved;
-    document.getElementById('select-vendedor').value = saved;
-    document.getElementById('vendedor-badge').classList.add('show');
-    document.getElementById('vendedor-badge-name').textContent = saved;
-    document.getElementById('btn-gestao').classList.add('show');
-  }
-  renderDeps();
-  // Fechar modal ao clicar fora
-  document.getElementById('modal-contrato').addEventListener('click', function(e) {
-    if(e.target === this) fecharModal();
-  });
+  const s=checkAuth();
+  if(s){state.session=s;aplicarSession();irPainel()}
+  // Fechar modais ao clicar fora
+  document.querySelectorAll('.modal-overlay').forEach(m=>{m.addEventListener('click',function(e){if(e.target===this)fecharModal(this.id)})});
 })();
 // ── FIM BLOCO ──
 </script>
