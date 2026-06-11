@@ -1,3 +1,4 @@
+// v1.1 — deploy automático via GitHub Actions
 /**
  * ═══════════════════════════════════════════════════════════
  * GOOGLE APPS SCRIPT v1.1 — DIM+ SAÚDE
