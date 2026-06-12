@@ -41,7 +41,7 @@ function handleLogin(d) {
   if (rows.length <= 1) {
     // Primeiro acesso: criar gestor padrão
     criarUsuarioPadrao(sheet);
-    return jsonOk({ ok: false, msg: 'Sem usuários. Conta padrão criada: admin@dimplus.com.br / Dimplus@2024' });
+    return jsonOk({ ok: false, msg: 'Sem usuários. Conta padrão criada: henrique.paludo@dimeg.com.br / Dimplus@2024' });
   }
   const hash = hashSenha(d.senha || '');
   for (let i = 1; i < rows.length; i++) {
@@ -207,9 +207,9 @@ function hashSenha(senha) {
 }
 
 function criarUsuarioPadrao(sheet) {
-  sheet.appendRow(['admin@dimplus.com.br', 'Administrador', hashSenha('Dimplus@2024'), 'gestor', true]);
-  sheet.appendRow(['rayane@dimplus.com.br', 'Rayane Godoy', hashSenha('Rayane@2024'), 'vendedor', true]);
-  sheet.appendRow(['sandra@dimplus.com.br', 'Sandra', hashSenha('Sandra@2024'), 'vendedor', true]);
+  sheet.appendRow(['henrique.paludo@dimeg.com.br', 'Henrique Paludo', hashSenha('2026'), 'gestor', true]);
+  sheet.appendRow(['rayane.godoy@dimeg.com.br', 'Rayane Godoy', hashSenha('2026'), 'vendedor', true]);
+  sheet.appendRow(['shaukanson@dimeg.com.br', 'Shaukanson', hashSenha('2026'), 'vendedor', true]);
 }
 
 function getOrCreateSheet(ss, name, headers) {
