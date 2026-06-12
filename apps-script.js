@@ -1,4 +1,4 @@
-// Deploy: 2026-06-12 11:29
+// Deploy: 2026-06-12 11:32
 // Deploy automático via GitHub Actions + clasp
 
 const SHEET_CONTRATOS = 'Contratos';
