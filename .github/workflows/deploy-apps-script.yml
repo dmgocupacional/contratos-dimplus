@@ -10,36 +10,90 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
 
-      - name: Install clasp
-        run: npm install -g @google/clasp@2.4.2
-
-      - name: Configure credentials
+      - name: Get fresh access token
+        id: token
         run: |
-          echo '${{ secrets.CLASP_CLASPRC }}' > ~/.clasprc.json
-          chmod 600 ~/.clasprc.json
-
-      - name: Configure .clasp.json
-        run: |
-          echo '{"scriptId":"${{ secrets.CLASP_SCRIPT_ID }}","rootDir":"."}' > .clasp.json
-
-      - name: Prepare Code.gs
-        run: cp apps-script.js Code.gs
-
-      - name: Push to Apps Script
-        run: clasp push --force 2>&1
-        continue-on-error: false
-
-      - name: Create version and redeploy
-        run: |
-          DESC="Deploy $(date +'%Y-%m-%d %H:%M')"
-          VERSION=$(clasp version "$DESC" 2>&1 | grep -oP 'Created version \K[0-9]+' || echo "")
-          if [ -n "$VERSION" ]; then
-            clasp redeploy "${{ secrets.CLASP_DEPLOYMENT_ID }}" "$VERSION" "$DESC" && echo "✅ Deploy versão $VERSION"
-          else
-            echo "⚠️ Versão não capturada, tentando deploy novo"
-            clasp deploy --description "$DESC"
+          RESPONSE=$(curl -s -X POST https://oauth2.googleapis.com/token \
+            -d "client_id=${{ secrets.GOOGLE_CLIENT_ID }}" \
+            -d "client_secret=${{ secrets.GOOGLE_CLIENT_SECRET }}" \
+            -d "refresh_token=${{ secrets.GOOGLE_REFRESH_TOKEN }}" \
+            -d "grant_type=refresh_token")
+          ACCESS_TOKEN=$(echo $RESPONSE | python3 -c "import sys,json; print(json.load(sys.stdin).get('access_token',''))")
+          if [ -z "$ACCESS_TOKEN" ]; then
+            echo "Erro ao obter token: $RESPONSE"
+            exit 1
           fi
+          echo "access_token=$ACCESS_TOKEN" >> $GITHUB_OUTPUT
+          echo "✅ Token obtido"
+
+      - name: Push code to Apps Script
+        run: |
+          SCRIPT_CONTENT=$(cat apps-script.js | python3 -c "import sys,json; print(json.dumps(sys.stdin.read()))")
+          APPSSCRIPT_CONTENT=$(cat appsscript.json | python3 -c "import sys,json; print(json.dumps(sys.stdin.read()))")
+
+          PAYLOAD=$(python3 << 'PYEOF'
+          import json
+          with open('apps-script.js') as f:
+              script = f.read()
+          with open('appsscript.json') as f:
+              manifest = f.read()
+          payload = {
+              "files": [
+                  {"name": "Code", "type": "SERVER_JS", "source": script},
+                  {"name": "appsscript", "type": "JSON", "source": manifest}
+              ]
+          }
+          print(json.dumps(payload))
+          PYEOF
+          )
+
+          RESPONSE=$(curl -s -X PUT \
+            "https://script.googleapis.com/v1/projects/${{ secrets.CLASP_SCRIPT_ID }}/content" \
+            -H "Authorization: Bearer ${{ steps.token.outputs.access_token }}" \
+            -H "Content-Type: application/json" \
+            -d "$PAYLOAD")
+
+          if echo "$RESPONSE" | grep -q '"error"'; then
+            echo "❌ Erro no push: $RESPONSE"
+            exit 1
+          fi
+          echo "✅ Código enviado para o Apps Script"
+
+      - name: Create new version
+        id: version
+        run: |
+          RESPONSE=$(curl -s -X POST \
+            "https://script.googleapis.com/v1/projects/${{ secrets.CLASP_SCRIPT_ID }}/versions" \
+            -H "Authorization: Bearer ${{ steps.token.outputs.access_token }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"description\": \"Deploy automático $(date +'%Y-%m-%d %H:%M')\"}")
+
+          VERSION=$(echo $RESPONSE | python3 -c "import sys,json; print(json.load(sys.stdin).get('versionNumber',''))")
+          if [ -z "$VERSION" ]; then
+            echo "Erro ao criar versão: $RESPONSE"
+            exit 1
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "✅ Versão $VERSION criada"
+
+      - name: Update deployment
+        run: |
+          RESPONSE=$(curl -s -X PUT \
+            "https://script.googleapis.com/v1/projects/${{ secrets.CLASP_SCRIPT_ID }}/deployments/${{ secrets.CLASP_DEPLOYMENT_ID }}" \
+            -H "Authorization: Bearer ${{ steps.token.outputs.access_token }}" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"deploymentConfig\": {
+                \"versionNumber\": ${{ steps.version.outputs.version }},
+                \"manifestFileName\": \"appsscript\",
+                \"description\": \"Deploy automático $(date +'%Y-%m-%d %H:%M')\"
+              }
+            }")
+
+          if echo "$RESPONSE" | grep -q '"error"'; then
+            echo "❌ Erro no deployment: $RESPONSE"
+            exit 1
+          fi
+          echo "✅ Deployment atualizado — versão ${{ steps.version.outputs.version }}"
+          echo "🌐 URL: https://script.google.com/macros/s/${{ secrets.CLASP_DEPLOYMENT_ID }}/exec"
