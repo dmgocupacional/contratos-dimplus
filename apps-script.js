@@ -1,4 +1,4 @@
-// v1.2 — auth + usuários + status + painel
+// Deploy: 2026-06-12 11:26
 // Deploy automático via GitHub Actions + clasp
 
 const SHEET_CONTRATOS = 'Contratos';
